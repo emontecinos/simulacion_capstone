@@ -1,5 +1,3 @@
-
-
 class GraphNode:
     def __init__(self, id, conexiones, posiciones_visibles = None):
         self.conexiones = set()
@@ -12,7 +10,7 @@ class GraphNode:
 
     def desconectar(self, nodo):
         self.conexiones.remove(nodo.nombre)
-
+        
 
 class Graph:
     def __init__(self):
@@ -79,5 +77,4 @@ class Graph:
                     if vecino == destino:
                         return cola[-1]
                 visited.append(current)
-
         return None
