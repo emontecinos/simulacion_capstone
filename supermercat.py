@@ -1,9 +1,11 @@
 import csv
+from gondolas import Gondola
 
 class GraphNode:
-    def __init__(self, id, x, y, posiciones_visibles = None):
+    def __init__(self, id, x, y, gondolas, posiciones_accesibles = None):
         self.conexiones = set()
-        self.posiciones_visibles = posiciones_visibles
+        self.posiciones_accesibles = posiciones_accesibles
+        self.gondolas = gondolas
         self.id = id
         self.x = x
         self.y = y
@@ -16,6 +18,14 @@ class GraphNode:
     def desconectar(self, nodo):
         self.conexiones.remove(nodo.nombre)
 
+    @property
+    def productos_accesibles(self):
+        productos = set()
+        for gondola in self.gondolas:
+            for posicion in self.posiciones_accesibles:
+                productos.add(gondola.espacios[int(posicion)])
+        return productos
+
     def __repr__(self):
         return self.id
 
@@ -23,6 +33,16 @@ class GraphNode:
 class Graph:
     def __init__(self):
         self.nodos = dict()
+        self.gondolas = {"1I": Gondola("1I"), "2I": Gondola("2I"), "1D": Gondola("1D"), "3I": Gondola("3I")}
+
+    def productos_visibles(self, nodo):
+        nodo = self.get_node(nodo)
+        productos = set()
+        for conexion in nodo.conexiones:
+            nodo_adyacente = self.get_node(conexion)
+            productos.add(*nodo_adyacente.productos_accesibles)
+        return productos
+
 
     def _crear_nodo(self, nombre):
         nodo = self.nodos.get(nombre)
@@ -42,11 +62,13 @@ class Graph:
             next(datos)
             list_datos = [dato for dato in datos]
             for nodo in list_datos:
-                nodo, conexiones, x, y = nodo
+                nodo, conexiones, x, y, gondolas, posiciones = nodo
                 nodo = "(" + nodo.replace(";",",") + ")"
-                self.nodos[nodo] = GraphNode(nodo,x,y)
+                gondolas = [self.get_gondola(i) for i in gondolas.split(";")]
+                posiciones = "(" + posiciones.replace(";",",") + ")"
+                self.nodos[nodo] = GraphNode(nodo, x, y, gondolas, posiciones)
             for nodo in list_datos:
-                nodo, conexiones, x, y = nodo
+                nodo, conexiones, x, y, gondolas, posiciones = nodo
                 conexiones = conexiones.strip().split("-")
                 for i in conexiones:
                     origen = "("+nodo.replace(";",",")+")"
@@ -58,6 +80,11 @@ class Graph:
         if name in self.nodos.keys():
             return self.nodos[name]
         return None
+
+    def get_gondola(self, id):
+        if id == "None":
+            return None
+        return self.gondolas[id]
 
     def encontrar_camino(self, origen, destino):
         if origen == destino:
@@ -93,22 +120,30 @@ class Graph:
 
 grafo = Graph()
 grafo.cargar_base("datos_nodos.csv")
-print(grafo.distancia_camino("(10,1)","(11,7)"))
-nodos = []
+grafo.gondolas = {"1I": Gondola("1I"), "2I": Gondola("2I"), "1D": Gondola("1D")}
 
-for i in range(1,10):
-    tupla = f"({i},4)"
-    nodos.append(tupla)
-for i in range(1,12):
-    tupla = f"({i},10)"
-    nodos.append(tupla)
-nodos.append("(3.5,1)")
-nodos.append("(7.5,1)")
-for nodo in nodos:
-    for destino in nodos:
-        if nodo != destino:
-            distancia = grafo.distancia_camino(nodo, destino)
-        else:
-            distancia = "0"
-        print(f"{nodo} {destino} {distancia}")
+grafo.productos_visibles("(1,1)")
+
+
+#print(grafo.distancia_camino("(10,1)","(11,7)"))
+
+
+
+#nodos = []
+
+# for i in range(1,10):
+#     tupla = f"({i},4)"
+#     nodos.append(tupla)
+# for i in range(1,12):
+#     tupla = f"({i},10)"
+#     nodos.append(tupla)
+# nodos.append("(3.5,1)")
+# nodos.append("(7.5,1)")
+# for nodo in nodos:
+#     for destino in nodos:
+#         if nodo != destino:
+#             distancia = grafo.distancia_camino(nodo, destino)
+#         else:
+#             distancia = "0"
+#         print(f"{nodo} {destino} {distancia}")
 
