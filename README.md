@@ -17,7 +17,10 @@ Metodos:
 ## Clase Gondola
 Atributos:
 Cada gondola estara dividida por secciones, por lo que solo tendra una dimension
-* productos: [lista de 17 slots de 16 unidades equivalentes cada uno]
+* productos: [lista de 17 slots de 16x3 unidades equivalentes cada uno (cada unidad considera 3 estanterias)]
+para la gondola larga definiremos que es de *648 unidades* equivalentes en vez que 639,2. por lo tanto tendra 27 slots de 24x2 unidades. Por lo tanto los slots calzan. 
+Hay 5 nodos por pasillo y los de los extremos tiene acceso los 4 primeros slots de una gondola y los de al medio a 3. Por ejemplo el nodo 1,2 tiene acceso a los slots 1,2,3,4 de la gondola 1I.
+Para la gondola larga: cada nodo que no esta entre pasillo va a poder acceder a 3 productos. Nos vamos a pitiar los nodos entre pasillos
 
 ## Clase Cliente
 Atributos:
