@@ -149,35 +149,35 @@ class Graph:
         # Los retorna como un string [...,'(1,2)','(4,5)',...]
         return ruta
 
+if __name__ == "__main__":
+    grafo = Graph()
+    grafo.cargar_base("datos_nodos.csv")
 
-grafo = Graph()
-grafo.cargar_base("datos_nodos.csv")
+    #  Calcular ruta minima
+    nodes = ["(2,2)","(10,1)","(3,5)","(9,3)"]
+    ruta = grafo.calcular_ruta_nodos(nodes)
+    print('ruta')
+    print(ruta)
 
-#  Calcular ruta minima
-nodes = ["(2,2)","(10,1)","(3,5)","(9,3)"]
-ruta = grafo.calcular_ruta_nodos(nodes)
-print('ruta')
-print(ruta)
+    #grafo.productos_visibles("(2,2)")
 
-#grafo.productos_visibles("(2,2)")
+    #print(grafo.distancia_camino("(10,1)","(11,7)"))
 
-#print(grafo.distancia_camino("(10,1)","(11,7)"))
+    #nodos = []
 
-#nodos = []
-
-# for i in range(1,10):
-#     tupla = f"({i},4)"
-#     nodos.append(tupla)
-# for i in range(1,12):
-#     tupla = f"({i},10)"
-#     nodos.append(tupla)
-# nodos.append("(3.5,1)")
-# nodos.append("(7.5,1)")
-# for nodo in nodos:
-#     for destino in nodos:
-#         if nodo != destino:
-#             distancia = grafo.distancia_camino(nodo, destino)
-#         else:
-#             distancia = "0"
-#         print(f"{nodo} {destino} {distancia}")
+    # for i in range(1,10):
+    #     tupla = f"({i},4)"
+    #     nodos.append(tupla)
+    # for i in range(1,12):
+    #     tupla = f"({i},10)"
+    #     nodos.append(tupla)
+    # nodos.append("(3.5,1)")
+    # nodos.append("(7.5,1)")
+    # for nodo in nodos:
+    #     for destino in nodos:
+    #         if nodo != destino:
+    #             distancia = grafo.distancia_camino(nodo, destino)
+    #         else:
+    #             distancia = "0"
+    #         print(f"{nodo} {destino} {distancia}")
 
