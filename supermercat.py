@@ -19,7 +19,6 @@ class GraphNode:
     def __repr__(self):
         return self.id
 
-
 class Graph:
     def __init__(self):
         self.nodos = dict()
