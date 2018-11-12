@@ -2,7 +2,7 @@ from supermercat import GraphNode, Graph
 from buscar_gondola import buscar_gondola
 
 grafo = Graph()
-grafo.cargar_base("datos_nodos.csv")
+grafo.cargar_base("datos_nodos_new.csv")
 
 #  Calcular ruta minima
 #nodes = ["(2,2)","(10,1)","(3,5)","(9,3)"]

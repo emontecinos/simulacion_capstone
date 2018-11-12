@@ -49,9 +49,10 @@ with open('datos_nodos.csv') as file:
         # Mitad inferior
         elif int(node_name.split(";")[-1]) < 13:
             if int(node_name.split(";")[0]) == 1:
-                gondolas = "{}I".format(2*int(node_name.split(";")[0])-2)
+                gondolas = "{}I".format(2*int(node_name.split(";")[0]))
+                
             elif int(node_name.split(";")[0]) == 11:
-                gondolas = "{}D".format(2*int(node_name.split(";")[0]))
+                gondolas = "{}D".format(2*int(node_name.split(";")[0])-2)
             else:
                 gondolas = "{}D;{}I".format(2*int(node_name.split(";")[0])-2, 2*int(node_name.split(";")[0]))
         
