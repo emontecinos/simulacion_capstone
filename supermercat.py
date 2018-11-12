@@ -39,6 +39,15 @@ class Graph:
         for i in nombres_gondolas:
             self.gondolas[i] = Gondola(i)
 
+    def buscar_gondola(self, listadeproductos):
+        ubicaciones = {}
+        for p in listadeproductos:
+            for nodokey in self.nodos:
+                print(nodokey)
+                if p in self.nodos["(1,6)"].productos_accesibles:
+                    ubicaciones[p] = nodokey
+        return ubicaciones
+
 
     def productos_visibles(self, nodo):
         nodo = self.get_node(nodo)
@@ -48,9 +57,9 @@ class Graph:
             for producto in nodo_adyacente.productos_accesibles:
                 productos.add(producto)
         if nodo.productos_accesibles:
-            productos.add(*nodo.productos_accesibles)
+            for p in nodo.productos_accesibles:
+                productos.add(p)
         return productos
-
 
     def _crear_nodo(self, nombre):
         nodo = self.nodos.get(nombre)
@@ -157,13 +166,17 @@ if __name__ == "__main__":
     grafo = Graph()
     grafo.cargar_base("datos_nodos.csv")
 
-    #  Calcular ruta minima
-    nodes = ["(2,2)","(10,1)","(3,5)","(9,3)"]
-    ruta = grafo.calcular_ruta_nodos(nodes)
-    print('ruta')
-    print(ruta)
+    #buscar gondola
+    print(grafo.buscar_gondola(["Canela"]))
+   
 
-    #grafo.productos_visibles("(2,2)")
+    #  Calcular ruta minima
+    #nodes = ["(2,2)","(10,1)","(3,5)","(9,3)"]
+    #ruta = grafo.calcular_ruta_nodos(nodes)
+    #print('ruta')
+    #print(ruta)
+
+    #grafo.productos_visibles("(9,6)")
 
     #print(grafo.distancia_camino("(10,1)","(11,7)"))
 
