@@ -20,12 +20,10 @@ class GraphNode:
 
     @property
     def productos_accesibles(self):
-        print(self)
         productos = set()
         for gondola in self.gondolas:
             for posicion in self.posiciones_accesibles:
-                productos.add(gondola.espacios[int(posicion)])
-                print(gondola.espacios[int(posicion)])
+                productos.add(gondola.espacios[int(posicion)-1])
         return productos
 
     def __repr__(self):
@@ -43,9 +41,8 @@ class Graph:
         ubicaciones = {}
         for p in listadeproductos:
             for nodokey in self.nodos:
-                print(nodokey)
-                if p in self.nodos["(1,6)"].productos_accesibles:
-                    ubicaciones[p] = nodokey
+                if p in self.nodos[nodokey].productos_accesibles:
+                    ubicaciones[p] = str(nodokey)
         return ubicaciones
 
 
@@ -166,8 +163,8 @@ if __name__ == "__main__":
     grafo = Graph()
     grafo.cargar_base("datos_nodos.csv")
 
-    #buscar gondola
-    print(grafo.buscar_gondola(["Canela"]))
+    # buscar gondola
+    #print(grafo.buscar_gondola(["Crema"]))
    
 
     #  Calcular ruta minima
