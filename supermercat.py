@@ -155,12 +155,7 @@ grafo.cargar_base("datos_nodos.csv")
 
 #grafo.productos_visibles("(2,2)")
 
-
-
-
 #print(grafo.distancia_camino("(10,1)","(11,7)"))
-
-
 
 #nodos = []
 
