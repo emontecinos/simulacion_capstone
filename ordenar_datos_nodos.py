@@ -47,15 +47,17 @@ with open('datos_nodos.csv') as file:
                     gondolas = "{}D;{}I".format(2*int(node_name.split(";")[0])-3, 2*int(node_name.split(";")[0])-1)
             
         # Mitad inferior
-        elif int(node_name.split(";")[-1]) < 13:
+        elif int(node_name.split(";")[-1]) >= 8 and int(node_name.split(";")[-1]) < 13:
             if int(node_name.split(";")[0]) == 1:
                 gondolas = "{}I".format(2*int(node_name.split(";")[0]))
                 
             elif int(node_name.split(";")[0]) == 11:
-                gondolas = "{}D".format(2*int(node_name.split(";")[0])-2)
+                gondolas = "{}D".format(2*int(node_name.split(";")[0])-4)
             else:
-                gondolas = "{}D;{}I".format(2*int(node_name.split(";")[0])-2, 2*int(node_name.split(";")[0]))
-        
+                if int(node_name.split(";")[0]) <= 9:
+                    gondolas = "{}D;{}I".format(2*int(node_name.split(";")[0])-2, 2*int(node_name.split(";")[0]))
+                else:
+                    gondolas = "{}D;{}I".format(2*int(node_name.split(";")[0])-3, 2*int(node_name.split(";")[0])-2)
         else:
             # 7, 13
             gondolas = "None"
