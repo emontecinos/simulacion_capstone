@@ -26,7 +26,7 @@ class Nodo:
     def __init__(self,nombre, gondola_rango):
         self.nombre = nombre
         self.gondolas_rango = gondola_rango
-
+        
 
 if __name__ == "__main__":
 

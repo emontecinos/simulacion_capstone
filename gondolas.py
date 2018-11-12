@@ -1,6 +1,5 @@
 from distribucion_aleatoria import productos_esta_gondola
 
-
 class Gondola:
 
     def __init__(self, id, espacios = [None for i in range(17)]):
@@ -34,7 +33,8 @@ class Gondola:
                 # la lista sería en caso de que se pueda donde se entrega la lista de espacios para darle a la otra gondola
 
 
-
+    def __str__(self):
+        return "{}".format(self.id)
 
 
 
