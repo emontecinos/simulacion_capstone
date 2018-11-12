@@ -730,7 +730,7 @@ def productos_esta_gondola(nombre):  ## Esta devuelve los slots de una gondola e
 
 
     elif nombre == "19":
-        while len(slots)<17:
+        while len(slots)<27:
             slots.append(None)
 
 

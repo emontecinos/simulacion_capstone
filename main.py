@@ -10,7 +10,17 @@ grafo.cargar_base("datos_nodos_new.csv")
 
 # Calcular nodo de una lista de productos
 productos = ["Durazno", "Crema", "Pavo", "Champú"]
-print(grafo.buscar_gondola(productos))
+dict_nodos_a_visitar = grafo.buscar_gondola(productos)
+lista_nodos_a_visitar = []
+for i in dict_nodos_a_visitar:
+    if dict_nodos_a_visitar[i] not in lista_nodos_a_visitar:
+        lista_nodos_a_visitar.append(dict_nodos_a_visitar[i])
+print(dict_nodos_a_visitar)
+print(lista_nodos_a_visitar)
+ruta = grafo.calcular_ruta_nodos(lista_nodos_a_visitar)
+print(ruta)
+
+
 
 # Encontrar Productos de una góndola
-print(grafo.gondolas["13D"].espacios)
+#print(grafo.gondolas["13D"].espacios)

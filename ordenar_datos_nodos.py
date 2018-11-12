@@ -6,7 +6,7 @@ with open('datos_nodos.csv') as file:
     datos = csv.reader(file)
     next(datos)
     informacion = [dato for dato in datos]
-    string_node = ""
+    string_node = "nodo,conexiones,x,y,gondolas,posiciones\n"
     for nodo in informacion:
         
         node_name = nodo[0]

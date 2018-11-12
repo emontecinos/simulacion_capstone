@@ -161,7 +161,7 @@ class Graph:
 
 if __name__ == "__main__":
     grafo = Graph()
-    grafo.cargar_base("datos_nodos.csv")
+    grafo.cargar_base("datos_nodos_new.csv")
 
     # buscar gondola
     #print(grafo.buscar_gondola(["Crema"]))
