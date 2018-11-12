@@ -135,13 +135,14 @@ class Graph:
         dict_nodos = {}
         for nodo_i in nodos:
             if nodo_i not in ruta:
-                dict_nodos[(inicial,nodo_i)], camino = self.distancia_camino(inicial, nodo_i)
+                distancia, camino = self.distancia_camino(inicial, nodo_i)
+                dict_nodos[(inicial,nodo_i)] = [camino, distancia]
                 if inicial == nodo_i:
                     dict_nodos[(inicial,nodo_i)] = inicial
-        par_minimo = min(dict_nodos, key=dict_nodos.get)
-        for i in camino[1:]:
-            ruta.append(str(i))
-        #ruta.append(par_minimo[1])
+        par_minimo = min(dict_nodos.keys(), key=(lambda k: dict_nodos[k][-1]))
+        for t in dict_nodos[par_minimo][0]:
+            if str(t) not in ruta:
+                ruta.append(str(t))
         for nodoe in nodos:
             if nodoe not in ruta:
                 self.calcular_ruta_nodos(nodos,ruta)
