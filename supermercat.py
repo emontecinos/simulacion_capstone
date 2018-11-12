@@ -123,7 +123,7 @@ class Graph:
             distancia += abs(float(nodo_anterior.x) - float(nodo.x))
             distancia += abs(float(nodo_anterior.y) - float(nodo.y))
             nodo_anterior = nodo
-        return distancia
+        return distancia, camino
     
     def calcular_ruta_nodos(self, nodos, ruta = []):
         if ruta == []:
@@ -135,23 +135,28 @@ class Graph:
         dict_nodos = {}
         for nodo_i in nodos:
             if nodo_i not in ruta:
-                dict_nodos[(inicial,nodo_i)] = self.distancia_camino(inicial, nodo_i)
+                dict_nodos[(inicial,nodo_i)], camino = self.distancia_camino(inicial, nodo_i)
                 if inicial == nodo_i:
                     dict_nodos[(inicial,nodo_i)] = inicial
         par_minimo = min(dict_nodos, key=dict_nodos.get)
-        ruta.append(par_minimo[1])
-        if len(ruta) <= len(nodos):
-            self.calcular_ruta_nodos(nodos,ruta)
-            return ruta
+        for i in camino[1:]:
+            ruta.append(str(i))
+        #ruta.append(par_minimo[1])
+        for nodoe in nodos:
+            if nodoe not in ruta:
+                self.calcular_ruta_nodos(nodos,ruta)
+        # Los retorna como un string [...,'(1,2)','(4,5)',...]
+        return ruta
+
 
 grafo = Graph()
 grafo.cargar_base("datos_nodos.csv")
 
 #  Calcular ruta minima
-#nodes = ["(2,2)","(10,1)","(3,5)","(9,3)"]
-#ruta = grafo.calcular_ruta_nodos(nodes)
-#print('ruta')
-#print(ruta)
+nodes = ["(2,2)","(10,1)","(3,5)","(9,3)"]
+ruta = grafo.calcular_ruta_nodos(nodes)
+print('ruta')
+print(ruta)
 
 #grafo.productos_visibles("(2,2)")
 

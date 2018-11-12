@@ -1,8 +1,11 @@
+from distribucion_aleatoria import productos_esta_gondola
+
+
 class Gondola:
 
     def __init__(self, id, espacios = [None for i in range(17)]):
         self.id = id
-        self.espacios = espacios # [None for i in range(17)]
+        self.espacios = productos_esta_gondola(id) # [None for i in range(17)]
 
     def solicitar_swap(self):
         pass

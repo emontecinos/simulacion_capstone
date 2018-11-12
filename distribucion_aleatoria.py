@@ -1,5 +1,5 @@
 ## define un orden aleatorio del supermercado
-from gondolas import Gondola 
+#from gondolas import Gondola 
 
 
 def distribucion_inicial(): ## Esta devuelve una lista con todos los objetos gondolas
