@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec851730-9bec-42c1-b4a8-9c6227912a85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gondolas.py" beforeDir="false" afterPath="$PROJECT_DIR$/gondolas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/supermercat.py" beforeDir="false" afterPath="$PROJECT_DIR$/supermercat.py" afterDir="false" />
     </list>
@@ -35,13 +35,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="csv" value="3" />
-          <entry key="py" value="1315" />
+          <entry key="py" value="1815" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSV" value="3" />
-          <entry key="Python" value="1315" />
+          <entry key="Python" value="1815" />
         </counts>
       </usages-collector>
     </session>
@@ -51,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gondolas.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="34">
+              <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -69,14 +69,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/supermercat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+            <state relative-caret-position="204">
+              <caret line="132" column="1" selection-start-line="132" selection-start-column="1" selection-end-line="132" selection-end-column="1" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1541976903107" expanded="true" signature="574:788" ph="..." />
-                <marker date="1541976903107" expanded="true" signature="1291:1298" ph="..." />
-                <marker date="1541976903107" expanded="true" signature="1328:1337" ph="..." />
-                <marker date="1541976903107" expanded="true" signature="2915:2954" ph="..." />
+                <marker date="1541980800196" expanded="true" signature="594:863" ph="..." />
+                <marker date="1541980800196" expanded="true" signature="1499:1506" ph="..." />
+                <marker date="1541980800196" expanded="true" signature="1536:1545" ph="..." />
+                <marker date="1541980800196" expanded="true" signature="3248:3287" ph="..." />
               </folding>
             </state>
           </provider>
@@ -87,6 +87,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>get</find>
+      <find>#print</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,14 +211,25 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/datos nodos.csv">
       <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/gondolas.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="34">
+          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -229,14 +242,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/supermercat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        <state relative-caret-position="204">
+          <caret line="132" column="1" selection-start-line="132" selection-start-column="1" selection-end-line="132" selection-end-column="1" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1541976903107" expanded="true" signature="574:788" ph="..." />
-            <marker date="1541976903107" expanded="true" signature="1291:1298" ph="..." />
-            <marker date="1541976903107" expanded="true" signature="1328:1337" ph="..." />
-            <marker date="1541976903107" expanded="true" signature="2915:2954" ph="..." />
+            <marker date="1541980800196" expanded="true" signature="594:863" ph="..." />
+            <marker date="1541980800196" expanded="true" signature="1499:1506" ph="..." />
+            <marker date="1541980800196" expanded="true" signature="1536:1545" ph="..." />
+            <marker date="1541980800196" expanded="true" signature="3248:3287" ph="..." />
           </folding>
         </state>
       </provider>

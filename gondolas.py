@@ -1,6 +1,6 @@
 class Gondola:
 
-    def __init__(self, id, espacios = [i for i in range(17)]):
+    def __init__(self, id, espacios = [None for i in range(17)]):
         self.id = id
         self.espacios = espacios # [None for i in range(17)]
 

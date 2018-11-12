@@ -20,10 +20,12 @@ class GraphNode:
 
     @property
     def productos_accesibles(self):
+        print(self)
         productos = set()
         for gondola in self.gondolas:
             for posicion in self.posiciones_accesibles:
                 productos.add(gondola.espacios[int(posicion)])
+                print(gondola.espacios[int(posicion)])
         return productos
 
     def __repr__(self):
@@ -40,7 +42,10 @@ class Graph:
         productos = set()
         for conexion in nodo.conexiones:
             nodo_adyacente = self.get_node(conexion)
-            productos.add(*nodo_adyacente.productos_accesibles)
+            for producto in nodo_adyacente.productos_accesibles:
+                productos.add(producto)
+        if nodo.productos_accesibles:
+            productos.add(*nodo.productos_accesibles)
         return productos
 
 
@@ -65,8 +70,11 @@ class Graph:
                 nodo, conexiones, x, y, gondolas, posiciones = nodo
                 nodo = "(" + nodo.replace(";",",") + ")"
                 gondolas = [self.get_gondola(i) for i in gondolas.split(";")]
-                posiciones = "(" + posiciones.replace(";",",") + ")"
-                self.nodos[nodo] = GraphNode(nodo, x, y, gondolas, posiciones)
+                _posiciones = []
+                for posicion in posiciones.split(";"):
+                    if not posicion == "None":
+                        _posiciones.append(int(posicion))
+                self.nodos[nodo] = GraphNode(nodo, x, y, gondolas, _posiciones)
             for nodo in list_datos:
                 nodo, conexiones, x, y, gondolas, posiciones = nodo
                 conexiones = conexiones.strip().split("-")
@@ -122,7 +130,9 @@ grafo = Graph()
 grafo.cargar_base("datos_nodos.csv")
 grafo.gondolas = {"1I": Gondola("1I"), "2I": Gondola("2I"), "1D": Gondola("1D")}
 
-grafo.productos_visibles("(1,1)")
+#grafo.productos_visibles("(2,2)")
+
+
 
 
 #print(grafo.distancia_camino("(10,1)","(11,7)"))
