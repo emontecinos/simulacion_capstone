@@ -185,7 +185,7 @@ with open('precios productos.csv', 'r', encoding='utf-8') as precios:
             largos_prod[x[0].replace(' ', '_').lower()] = float(x[2])
 
 
-with open('Boletas.csv', 'r', encoding='utf-8') as file:
+with open('Boletas_completas.csv', 'r', encoding='utf-8') as file:
     cont = 0
     for i in file:
         if cont == 0:
