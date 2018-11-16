@@ -1,11 +1,4 @@
-
-
-precios_prod = {}
-largos_prod = {}
-cant_vendida = {}
-productos = []
-
-porcentaje_ventas_prod = {}
+import numpy as np
 
 
 ####################### FAMILIAS #########################
@@ -109,11 +102,73 @@ for p in limpieza_hogar:
     prod_familia[p.lower()] = 'limpieza_hogar'
 
 ventas_familia = {}
+precios_prod = {}
+largos_prod = {}
+cant_vendida = {}
+productos = []
+porcentaje_ventas_prod = {}
 
 ########################################################################################################################
+###########################------------PARAMETROS----------- ###########################################################
+########################################################################################################################
+
+espacio_total_supermercado = 10440
+largo_slot_gondola_corta = 16
+largo_slot_gondola_larga = 24
 
 
-espacio_total_supermercado = 30654.4
+espacio_aceiteygrasas = int
+espacio_bebidas = int
+espacio_cafeyendulzantes = int
+espacio_carnes = int
+espacio_cereales = int
+espacio_condimentosyaderezos = int
+espacio_dulcesygolosinas = int
+espacio_legumbres = int
+espacio_panyderivados = int
+espacio_pescadosymariscos = int
+espacio_frutasyverduras = int
+espacio_lacteosyhuevo = int
+espacio_fiambreria = int
+espacio_cuidadopersonal = int
+espacio_limpiezahogar = int
+
+espacio_unid_equiv_familia = dict()
+
+espacio_unid_equiv_familia['aceite_y_grasas'] = espacio_aceiteygrasas
+
+espacio_unid_equiv_familia['bebidas'] = espacio_bebidas
+
+espacio_unid_equiv_familia['cafe_y_endulzantes'] = espacio_cafeyendulzantes
+
+espacio_unid_equiv_familia['carnes'] = espacio_carnes
+
+espacio_unid_equiv_familia['cereales'] = espacio_cereales
+
+espacio_unid_equiv_familia['condimentos_y_aderezos'] = espacio_condimentosyaderezos
+
+espacio_unid_equiv_familia['dulces_y_golosinas'] = espacio_dulcesygolosinas
+
+espacio_unid_equiv_familia['legumbres_secas'] = espacio_legumbres
+
+espacio_unid_equiv_familia['pan_y_derivados_del_trigo'] = espacio_panyderivados
+
+espacio_unid_equiv_familia['pescado_y_mariscos'] = espacio_pescadosymariscos
+
+espacio_unid_equiv_familia['frutas_y_verduras'] = espacio_frutasyverduras
+
+espacio_unid_equiv_familia['lacteos_y_huevo'] = espacio_lacteosyhuevo
+
+espacio_unid_equiv_familia['fiambreria'] = espacio_fiambreria
+
+espacio_unid_equiv_familia['cuidado_personal'] = espacio_cuidadopersonal
+
+espacio_unid_equiv_familia['limpieza_hogar'] = espacio_limpiezahogar
+
+
+
+########################################################################################################################
+########################################################################################################################
 
 for x in prod_familia.values():
     ventas_familia[x] = 0
@@ -130,7 +185,7 @@ with open('precios productos.csv', 'r', encoding='utf-8') as precios:
             largos_prod[x[0].replace(' ', '_').lower()] = float(x[2])
 
 
-with open('Boletas.csv', 'r', encoding='utf-8') as file:
+with open('Boletas_completas.csv', 'r', encoding='utf-8') as file:
     cont = 0
     for i in file:
         if cont == 0:
@@ -145,37 +200,91 @@ with open('Boletas.csv', 'r', encoding='utf-8') as file:
                     cant_vendida[compra[0].lower()] += 1
                     ventas_familia[prod_familia[compra[0].lower()]] += 1
 
-ventas_totales = 0
-for cant in cant_vendida.values():
-    ventas_totales += cant
 
-for ventas in cant_vendida.items():
-    porcentaje_ventas_prod[ventas[0]] = ventas[1] / ventas_totales
-
-
-for we in porcentaje_ventas_prod.items():
-    espacio_ponderado = we[1] * espacio_total_supermercado
-    if espacio_ponderado < largos_prod[we[0]]:
-        print(espacio_ponderado, largos_prod[we[0]])
-
-
-
-# print(cant_vendida)
-print(ventas_totales)
-# print(productos)
-# print(porcentaje_ventas_prod)
-
+print(productos)
+print(precios_prod)
+print(largos_prod)
+print(cant_vendida)
 print(ventas_familia)
 
 
-porcentaje_ventas_familia = {}
+porcentaje_ventas_prod_en_su_familia = {}
+for ventas in cant_vendida.items():
+    """ Esto calcula el porcentaje de volumen de ventas de un producto en su familia"""
+    porcentaje_ventas_prod_en_su_familia[ventas[0]] = ventas[1] / ventas_familia[prod_familia[ventas[0]]]
+print(porcentaje_ventas_prod_en_su_familia)
 
-for tupla in ventas_familia.items():
-    porcentaje_ventas_familia[tupla[0]] = (tupla[1]/ventas_totales, (tupla[1]*espacio_total_supermercado)/ventas_totales,
-                                           (tupla[1] * espacio_total_supermercado) / (ventas_totales * 816))
+# ----------------------------------------------------------------------------------------------------------------------
+""" Este bloque es para multiplicar cada porcentaje por el espacio que se le deberia dar a cada familia """
+espacio_unid_equiv_producto = dict()
 
-suma_de_gondolas = 0
-for i in porcentaje_ventas_familia.items():
-    suma_de_gondolas += i[1][2]
-    print(i)
-print(suma_de_gondolas)
+for p in porcentaje_ventas_prod_en_su_familia.items():
+    familia = prod_familia[p[0]]
+    espacio_unid_equiv_producto[p[0]] = espacio_unid_equiv_familia[familia] * p[1]
+# ----------------------------------------------------------------------------------------------------------------------
+
+espacios_productos = []
+for space in espacio_unid_equiv_producto.values():
+    espacios_productos.append(space)
+
+percentiles1 = np.quantile(espacios_productos, [0.25, 0.5, 0.75, 1])
+divisiones = []
+for i in percentiles1:
+    divisiones.append(i)
+
+
+""" Lo que el siguiente bloque hace es asignar la cantidad de slots que representaran a cada producto"""
+slots_producto = dict()
+for producto in espacio_unid_equiv_producto.items():
+    for x in divisiones:
+        j = 1
+        if producto[1] <= x:
+            slots_producto[producto[0]] = j
+        else:
+            j += 1
+
+
+
+
+
+
+
+
+# ventas_totales = 0
+# for cant in cant_vendida.values():
+#     ventas_totales += cant
+#
+# for ventas in cant_vendida.items():
+#     porcentaje_ventas_prod[ventas[0]] = ventas[1] / ventas_totales
+#
+#
+# for we in porcentaje_ventas_prod.items():
+#     espacio_ponderado = we[1] * espacio_total_supermercado
+#     if espacio_ponderado < largos_prod[we[0]]:
+#         print(espacio_ponderado, largos_prod[we[0]])
+#
+#
+#
+# # print(cant_vendida)
+# print(ventas_totales)
+# # print(productos)
+# # print(porcentaje_ventas_prod)
+#
+# print(ventas_familia)
+#
+#
+# porcentaje_ventas_familia = {}
+#
+# for tupla in ventas_familia.items():
+#     porcentaje_ventas_familia[tupla[0]] = (tupla[1]/ventas_totales, (tupla[1]*espacio_total_supermercado)/ventas_totales,
+#                                            (tupla[1] * espacio_total_supermercado) / (ventas_totales * 816))
+#
+# suma_de_gondolas = 0
+# for i in porcentaje_ventas_familia.items():
+#     suma_de_gondolas += i[1][2]
+#     print(i)
+# print(suma_de_gondolas)
+#
+# for i in range(2,272):
+#     if 272 // i == 0:
+#         print(i)
