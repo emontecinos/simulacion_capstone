@@ -1,5 +1,8 @@
 from supermercat import GraphNode, Graph
 from buscar_gondola import buscar_gondola
+from calcular_ruta_productos_vistos import calcular_ruta_productos_vistos
+from compra_espontanea import compra_espontanea
+from Cliente import Cliente
 
 grafo = Graph()
 grafo.cargar_base("datos_nodos_new.csv")
@@ -9,25 +12,15 @@ grafo.cargar_base("datos_nodos_new.csv")
 #ruta = grafo.calcular_ruta_nodos(nodes)
 
 # Calcular nodo de una lista de productos
+
 productos = ["Durazno", "Crema", "Pavo", "Champú"]
-dict_nodos_a_visitar = grafo.buscar_gondola(productos)
-lista_nodos_a_visitar = []
-for i in dict_nodos_a_visitar:
-    if dict_nodos_a_visitar[i] not in lista_nodos_a_visitar:
-        lista_nodos_a_visitar.append(dict_nodos_a_visitar[i])
-#print(dict_nodos_a_visitar)
-#print(lista_nodos_a_visitar)
-ruta = grafo.calcular_ruta_nodos(lista_nodos_a_visitar)
-#print(ruta)
-dict_productos_vistos = []
-productos_vistos = []
-for n in ruta:
-       dict_productos_vistos.append(grafo.productos_visibles(n))
-for i in dict_productos_vistos:
-        for j in i:
-                if j not in productos_vistos:
-                        productos_vistos.append(j)
-print(productos_vistos, len(productos_vistos))
+cliente = Cliente(productos)
+cliente.calcular_ruta(grafo)
+cliente.calcular_productos_vistos(grafo)
+
+
+# comprar
+
 
 # Encontrar Productos de una góndola
 # print(grafo.gondolas["13D"].espacios)
