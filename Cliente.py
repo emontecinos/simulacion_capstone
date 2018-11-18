@@ -18,6 +18,9 @@ class Cliente:
             if dict_nodos_a_visitar[i] not in lista_nodos_a_visitar:
                 lista_nodos_a_visitar.append(dict_nodos_a_visitar[i])
         self.ruta = grafo.calcular_ruta_nodos(lista_nodos_a_visitar,[])
+        for nodo in self.ruta:
+            node = grafo.get_node(nodo)
+            node.veces_visitado += 1
     
     def calcular_productos_vistos(self,grafo):
         dict_productos_vistos = []
@@ -47,7 +50,7 @@ class Cliente:
                 factor_corr_producto = encontrar_corr_producto(list(set(self.lista_compras + self.comprado)), producto)
                 factor_corr_familia = encontrar_corr_familia(list(set(self.lista_compras + self.comprado)), producto)
 
-            probabilidad = (a*float(factor_cant_productos) + b*float(factor_corr_producto) + c*float(factor_corr_familia))/3
+            probabilidad = 1*(a*float(factor_cant_productos) + b*float(factor_corr_producto) + c*float(factor_corr_familia))/2
             return probabilidad
     
     def comprar_producto(self, producto):
@@ -57,6 +60,8 @@ class Cliente:
             #print('Probabilidad: {}, comparador: {}'.format(probabilidad_comprar_prod, prob_random))
             if probabilidad_comprar_prod >= prob_random:
                 self.comprado.append(producto)
+                if producto not in self.lista_compras:
+                    self.compras_espontaneas.append(producto)
                 #print("El cliente ha comprado {}".format(producto))
     
     # Ordena el txt en un csv

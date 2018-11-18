@@ -7,8 +7,14 @@ def buscar_gondola(productos, supermercado):
             for k in j.gondolas_rango:
                 if i in j.gondolas_rango[k]:
                     nodos.append(j)
+                    j.veces_visitado += 1
     return nodos
 # {'g1':[1,5],'g2':[10,20]}
+
+
+
+
+
 class Nodo:
     def __init__(self,nombre, gondola_rango):
         self.nombre = nombre
