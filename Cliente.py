@@ -22,6 +22,11 @@ class Cliente:
         for nodo in self.ruta:
             node = grafo.get_node(nodo)
             node.veces_visitado += 1
+        
+    def calcular_distancia_recorrida(self):
+        for i in self.ruta:
+            print('cliente',self.ruta)
+
     
     def calcular_productos_vistos(self,grafo):
         dict_productos_vistos = []
@@ -33,7 +38,6 @@ class Cliente:
                             self.productos_vistos.append(j)
     
     def probabilidad_comprar(self, producto):
-
         if producto in self.lista_compras:
             return 1
         elif producto not in self.productos_vistos:

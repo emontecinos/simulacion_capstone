@@ -61,7 +61,8 @@ class Simulacion:
             datos = csv.reader(Boletas)
             informacion = [dato for dato in datos]
             for i in range(num_clientes):
-                numero_de_boleta = str(random.randint(1,int(tope_boleta)))
+                numero_de_boleta = str(i+1)
+                #numero_de_boleta = str(random.randint(1,int(tope_boleta)))
                 producto_en_lista = []
                 productoactual = 0
                 for row in informacion:
@@ -117,6 +118,10 @@ class Simulacion:
                 dict_prods[prod]=total_prods_espontaneos.count(prod)
         max_prod = max(dict_prods.keys(), key=(lambda k:dict_prods[k]))
         self.estadisticas["top_productos_espontaneos"]=[max_prod,dict_prods[max_prod]]
+
+        # calcular_distnacia_recorrida
+        for cliente in self.clientes:
+            cliente.calcular_distancia_recorrida()
 
         
         for k in self.estadisticas:

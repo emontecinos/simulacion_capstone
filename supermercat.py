@@ -150,7 +150,9 @@ class Graph:
                 dict_nodos[(inicial,nodo_i)] = [camino, distancia]
                 if inicial == nodo_i:
                     dict_nodos[(inicial,nodo_i)] = inicial
+
         par_minimo = min(dict_nodos.keys(), key=(lambda k: dict_nodos[k][-1]))
+
         for t in dict_nodos[par_minimo][0]:
             if str(t) not in ruta:
                 ruta.append(str(t))
@@ -158,6 +160,7 @@ class Graph:
             if nodoe not in ruta:
                 self.calcular_ruta_nodos(nodos,ruta)
         # Los retorna como un string [...,'(1,2)','(4,5)',...]
+
         return ruta
 
 if __name__ == "__main__":
