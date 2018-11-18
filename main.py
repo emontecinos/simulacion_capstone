@@ -3,15 +3,13 @@ from buscar_gondola import buscar_gondola
 from calcular_ruta_productos_vistos import calcular_ruta_productos_vistos
 #from compra_espontanea import compra_espontanea
 from Cliente import Cliente
+import random
+
 
 grafo = Graph()
 grafo.cargar_base("datos_nodos_new.csv")
 
-#  Calcular ruta minima
-#nodes = ["(2,2)","(10,1)","(3,5)","(9,3)"]
-#ruta = grafo.calcular_ruta_nodos(nodes)
 
-# Calcular nodo de una lista de productos
 
 listas_fam_prods = [['Aceite', 'Aceite_de_oliva', 'Grasa_comestible', 'Manteca',
                    'Manteca_de_cerdo', 'Margarina', 'Margarina_light'],['Agua_con_gas', 'Agua_sin_gas', 'Bebida_hidratante', 'Jugo_de_fruta',
@@ -31,10 +29,10 @@ listas_fam_prods = [['Aceite', 'Aceite_de_oliva', 'Grasa_comestible', 'Manteca',
                             'Pastelillos', 'Tortilla_de_harina_de_trigo'],['Almeja', 'Atun', 'Bacalao', 'Blanco_Nilo', 'Boqueron', 'Calamar', 'Callo_de_hacha',
                     'Camaron', 'Carpa', 'Cazon', 'Charal', 'Cintilla', 'Curvina', 'Gurrubata',
                     'Huachinango', 'Jaiba', 'Langosta'],['Acelga', 'Palta', 'Ajo', 'Alcachofa', 'Alcaparra', 'Almendras', 'Apio', 'Avellana', 'Betarraga',
-                    'Brocoli', 'Calabaza', 'Castañas', 'Cebolla', 'Champiñón', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
+                    'Brocoli', 'Calabaza', 'Castanas', 'Cebolla', 'Champinon', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
                     'Durazno', 'Espinacas', 'Fresa', 'Frijoles', 'Granada', 'Kiwi', 'Lechuga', 'Lima', 'Limon',
                     'Mandarina', 'Mango', 'Manzana', 'Melón', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_(Uva_pasa)',
-                    'Pepino', 'Pera', 'Pimiento', 'Piña', 'Platano', 'Rabano', 'Sandia', 'Tomate',
+                    'Pepino', 'Pera', 'Pimiento', 'Pina', 'Platano', 'Rabano', 'Sandia', 'Tomate',
                     'Tuna', 'Uva', 'Zanahoria'],['Huevo', 'Crema', 'Crema_batida', 'Mantequilla', 'Queso_mantecosi', 'Queso_gauda',
                 'Queso_blanco', 'Yoghurt', 'Leche_condensada', 'Leche_en_polvo', 'Leche_evaporada',
                 'Leche_pasteurizada', 'Leche_ultrapasteurizada'],['Chorizo', 'Jamon', 'jamon_de_pavo', 'Longaniza', 'Mortadela', 'Pastel_pimiento',
@@ -44,7 +42,7 @@ listas_fam_prods = [['Aceite', 'Aceite_de_oliva', 'Grasa_comestible', 'Manteca',
                     'Toalla_femenina', 'Toallita_humeda_limpiadora'],['Acondicionador_de_telas', 'Barra_limpiadora', 'Blanqueador', 'Detergente_ropa',
                 'Detergente_ropa_liquido', 'Detergente_ropa_polvo', 'Detergente_trastes',
                 'Insecticida_aerosol', 'Jabon_de_pasta', 'Jabon_limpiador', 'Limpiador_liquido',
-                'Limpiador_lìquido_piso', 'Servilletas_de_papel', 'Suavizante_ropa', 'Toalla_de_papel']]
+                'Limpiador_liquido_piso', 'Servilletas_de_papel', 'Suavizante_ropa', 'Toalla_de_papel']]
 
 productos_totales = []
 for i in listas_fam_prods:
@@ -52,7 +50,7 @@ for i in listas_fam_prods:
 
 clientes = []
 for i in [5,5,6,6,7,7]:
-    lista_cliente_i = random.choices([productos_totales], k=i)
+    lista_cliente_i = random.sample(productos_totales,k=i)
     clientes.append(Cliente(lista_cliente_i))
     clientes[-1].calcular_ruta(grafo)
     clientes[-1].calcular_productos_vistos(grafo)
@@ -72,6 +70,11 @@ print(cliente.comprado)
 """
 
 
+#  Calcular ruta minima
+#nodes = ["(2,2)","(10,1)","(3,5)","(9,3)"]
+#ruta = grafo.calcular_ruta_nodos(nodes)
+
+# Calcular nodo de una lista de productos
 
 # comprar
 
