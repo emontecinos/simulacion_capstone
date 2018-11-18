@@ -117,21 +117,21 @@ largo_slot_gondola_corta = 16
 largo_slot_gondola_larga = 24
 
 
-espacio_aceiteygrasas = int
-espacio_bebidas = int
-espacio_cafeyendulzantes = int
-espacio_carnes = int
-espacio_cereales = int
-espacio_condimentosyaderezos = int
-espacio_dulcesygolosinas = int
-espacio_legumbres = int
-espacio_panyderivados = int
-espacio_pescadosymariscos = int
-espacio_frutasyverduras = int
-espacio_lacteosyhuevo = int
-espacio_fiambreria = int
-espacio_cuidadopersonal = int
-espacio_limpiezahogar = int
+espacio_aceiteygrasas = 816 * 1
+espacio_bebidas = 816 * 2
+espacio_cafeyendulzantes = 816 * 1
+espacio_carnes = 816 * 5
+espacio_cereales = 816 * 0.8
+espacio_condimentosyaderezos = 816 * 4
+espacio_dulcesygolosinas = 816 * 2
+espacio_legumbres = 816 * 0.8
+espacio_panyderivados = 816 * 2
+espacio_pescadosymariscos = 816 * 3
+espacio_frutasyverduras = 816 * 6
+espacio_lacteosyhuevo = 816 * 3
+espacio_fiambreria = 816 * 2
+espacio_cuidadopersonal = 816 * 3
+espacio_limpiezahogar = 816 * 2
 
 espacio_unid_equiv_familia = dict()
 
@@ -180,7 +180,8 @@ with open('precios productos.csv', 'r', encoding='utf-8') as precios:
         c += 1
         if c > 1:
             x = line.strip('\n').split(',')
-            precios_prod[x[0].replace(' ', '_').lower()] = int(x[1])
+            precios_prod[x[0].replace(" ", "_").replace("á", "a").replace("é", "e").replace("í", "i")\
+            .replace("ó", "o").replace("ú", "u").replace("/", ".")] = int(x[1])
             cant_vendida[x[0].replace(' ', '_').lower()] = 0
             largos_prod[x[0].replace(' ', '_').lower()] = float(x[2])
 
@@ -207,12 +208,26 @@ print(largos_prod)
 print(cant_vendida)
 print(ventas_familia)
 
+ventas_totales = 0
+for cant in cant_vendida.values():
+    ventas_totales += cant
+# with open("Porcentaje de ventas por familia segun volumen de ventas.csv", 'w', encoding='utf-8') as trololo:
+#     trololo.write("Familia, Porcentaje de ventas familia \n")
+#     for trolo in ventas_familia.items():
+#         porcentaje = (trolo[1] / ventas_totales)
+#         trololo.write("{}, {} \n".format(trolo[0], porcentaje))
+#
 
 porcentaje_ventas_prod_en_su_familia = {}
 for ventas in cant_vendida.items():
     """ Esto calcula el porcentaje de volumen de ventas de un producto en su familia"""
     porcentaje_ventas_prod_en_su_familia[ventas[0]] = ventas[1] / ventas_familia[prod_familia[ventas[0]]]
 print(porcentaje_ventas_prod_en_su_familia)
+
+# with open("Ventas de un producto en su familia.csv", 'w', encoding='utf-8') as lala:
+#     lala.write("Producto, Pocentaje de ventas en su familia \n")
+#     for q in porcentaje_ventas_prod_en_su_familia.items():
+#         lala.write("{}, {}\n".format(q[0], q[1]))
 
 # ----------------------------------------------------------------------------------------------------------------------
 """ Este bloque es para multiplicar cada porcentaje por el espacio que se le deberia dar a cada familia """
@@ -221,38 +236,103 @@ espacio_unid_equiv_producto = dict()
 for p in porcentaje_ventas_prod_en_su_familia.items():
     familia = prod_familia[p[0]]
     espacio_unid_equiv_producto[p[0]] = espacio_unid_equiv_familia[familia] * p[1]
+print(espacio_unid_equiv_producto)
 # ----------------------------------------------------------------------------------------------------------------------
 
-espacios_productos = []
-for space in espacio_unid_equiv_producto.values():
-    espacios_productos.append(space)
 
-percentiles1 = np.quantile(espacios_productos, [0.25, 0.5, 0.75, 1])
-divisiones = []
-for i in percentiles1:
-    divisiones.append(i)
+""" Lo que el siguiente bloque hace es asignar la cantidad de slots que representaran a cada producto,
+    Adaptandolo proporcinalmente para que cada cual tenga la longitud correspondiente en los 17 slots definidos"""
 
 
-""" Lo que el siguiente bloque hace es asignar la cantidad de slots que representaran a cada producto"""
-slots_producto = dict()
-for producto in espacio_unid_equiv_producto.items():
-    for x in divisiones:
-        j = 1
-        if producto[1] <= x:
-            slots_producto[producto[0]] = j
-        else:
-            j += 1
+familias_con_productos_con_espacio = dict()
+
+for familia in espacio_unid_equiv_familia.keys():
+    familias_con_productos_con_espacio[familia] = []
+
+for prod in espacio_unid_equiv_producto.items():
+    familias_con_productos_con_espacio[prod_familia[prod[0]]].append(prod)
+
+
+print(familias_con_productos_con_espacio)
+
+
+def slots_productos(familias_con_productos):
+    slots_producto = dict()
+    for fam in familias_con_productos.items():
+        largos_familia = [L[1] for L in fam[1]]
+        percentiles = np.quantile(largos_familia, [0.25, 0.5, 0.75, 1])
+        divisiones = []
+        for prt in percentiles:
+            divisiones.append(prt)
+        slots = 0
+        for producto in fam[1]:
+            j = 1
+            for P in divisiones:
+                if producto[1] <= P:
+                    if producto[0] not in slots_producto.keys():
+                        slots += j
+                    slots_producto[producto[0]] = j
+                else:
+                    j += 1
+        n_gond = espacio_unid_equiv_familia[fam[0]] / 816
+        if slots < n_gond * 17:
+            for s in fam[1]:
+                factor = n_gond * 17 / slots
+                actual = slots_producto[s[0]]
+                slots_producto[s[0]] = round(actual * factor)
+
+    return slots_producto
+
+
+slots = slots_productos(familias_con_productos_con_espacio)
+
+for_nacrur = dict()
+aaaaa = []
+with open('Productos 20-80.csv', 'r') as file:
+    for line in file:
+        producto = line.strip("\n").replace(" ", "_").lower()
+        aaaaa.append(producto)
+        print(producto)
+for w in familias_con_productos_con_espacio.keys():
+    for_nacrur[w] = []
+
+for o in aaaaa:
+    q = o.replace(" ", "_").replace("á", "a").replace("é", "e").replace("í", "i")\
+            .replace("ó", "o").replace("ú", "u").replace("/", ".")
+    inicial = q[0].upper()
+    w = inicial + q[1:]
+    for_nacrur[prod_familia[o]].append(w)
+print(for_nacrur)
+
+
+#
+# with open('Slots por producto.csv', 'w', encoding='UTF-8') as file:
+#     file.write("Producto, Slots \n")
+#     for i in slots.items():
+#         file.write("{}, {} \n".format(i[0], i[1]))
+#
+#
+# print(slots)
+#
+# slots_fam = dict()
+#
+#
+# for familia in espacio_unid_equiv_familia.keys():
+#     slots_fam[familia] = 0
+#
+# for y in slots.items():
+#     slots_fam[prod_familia[y[0]]] += y[1]
+#
+#
+# print(slots_fam)
 
 
 
+# with open("Slots por producto.csv", 'w', encoding="UTF-8") as file:
+#     file.write("Producto, Slots \n")
+#     for x in slots.items():
+#         file.write("{}, {} \n".format(x[0], x[1]))
 
-
-
-
-
-# ventas_totales = 0
-# for cant in cant_vendida.values():
-#     ventas_totales += cant
 #
 # for ventas in cant_vendida.items():
 #     porcentaje_ventas_prod[ventas[0]] = ventas[1] / ventas_totales
