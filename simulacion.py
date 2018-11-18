@@ -142,8 +142,17 @@ if __name__ == "__main__":
     grafo = Graph()
     grafo.cargar_base("datos_nodos_new.csv")
     simulacion = Simulacion(grafo)
-    simulacion.run(4, 40)
-    #for grafo in simulacion.grafo.nodos:
-     #   print(simulacion.grafo.get_node(grafo).veces_visitado)
+    simulacion.run(10, 40)
+    # for grafo in simulacion.grafo.nodos:
+    #   print(simulacion.grafo.get_node(grafo).veces_visitado)
+    gondola = grafo.gondolas["1I"]
+    gondola_2 = grafo.gondolas["10I"]
+    print(gondola)
+    print(gondola_2)
+    gondola.manejo_swap('Falda_de_res', 'Pollo', gondola_2)
+    print(gondola)
+    print(gondola_2)
+    simulacion.run(10, 40)
+
 
 
