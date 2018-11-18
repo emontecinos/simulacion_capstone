@@ -10,9 +10,11 @@ class Cliente:
         self.compras_espontaneas = []
         self.productos_vistos = []
         self.ruta = None
+        self.probabilidad_total = 0
     
     def calcular_ruta(self, grafo):
         dict_nodos_a_visitar = grafo.buscar_gondola(self.lista_compras)
+        print('rrrrr',dict_nodos_a_visitar)
         lista_nodos_a_visitar = []
         for i in dict_nodos_a_visitar:
             if dict_nodos_a_visitar[i] not in lista_nodos_a_visitar:
@@ -51,6 +53,7 @@ class Cliente:
                 factor_corr_familia = encontrar_corr_familia(list(set(self.lista_compras + self.comprado)), producto)
 
             probabilidad = 1*(a*float(factor_cant_productos) + b*float(factor_corr_producto) + c*float(factor_corr_familia))/2
+            self.probabilidad_total += probabilidad
             return probabilidad
     
     def comprar_producto(self, producto):

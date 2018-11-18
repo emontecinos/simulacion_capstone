@@ -38,7 +38,7 @@ def encontrar_familia(producto):
                         'Huachinango', 'Jaiba', 'Langosta','Pescados_y_mariscos']
 
     Frutas_y_verduras = ['Acelga', 'Palta', 'Ajo', 'Alcachofa', 'Alcaparra', 'Almendras', 'Apio', 'Avellana', 'Betarraga',
-                        'Brocoli', 'Calabaza', 'Castañas', 'Cebolla', 'Champinon', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
+                        'Brocoli', 'Calabaza', 'Castanas', 'Cebolla', 'Champinon', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
                         'Durazno', 'Espinacas', 'Fresa', 'Frijoles', 'Granada', 'Kiwi', 'Lechuga', 'Lima', 'Limon',
                         'Mandarina', 'Mango', 'Manzana', 'Melon', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_.Uva_pasa.',
                         'Pepino', 'Pera', 'Pimiento', 'Pina', 'Platano', 'Rabano', 'Sandia', 'Tomate',

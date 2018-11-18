@@ -241,9 +241,9 @@ def productos_esta_gondola(nombre):  ## Esta devuelve los slots de una gondola e
         slots.append('Nuez')   #5
         slots.append('Papa')   #6
         slots.append('Papaya')   #7
-        slots.append('Pasa_(Uva_pasa)')   #8
-        slots.append('Pasa_(Uva_pasa)')   #9
-        slots.append('Pasa_(Uva_pasa)')   #10
+        slots.append('Pasa_.Uva_pasa.')   #8
+        slots.append('Pasa_.Uva_pasa.')   #9
+        slots.append('Pasa_.Uva_pasa.')   #10
         slots.append('Pepino')   #11
         slots.append('Pepino')   #12
         slots.append('Pera')   #13
