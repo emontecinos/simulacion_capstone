@@ -1,20 +1,7 @@
 ## Buscar góndola de acuerdo a un producto
 
 def buscar_gondola(productos, supermercado):
-    nodos = []
-    """
-    i = 0
-    while len(nodos) < len(productos):
-        producto_i = productos[i]
-        j = 0
-        while j < len(supermercado):
-            nodo_j = supermercado[j]
-            for key in nodo_j.gondolas_rango:
-                if producto_i in nodo_j.gondolas_rango[key]:
-                    nodos.append(nodo_j)
-            j += 1
-        i += 1"""
-    
+    nodos = []    
     for i in productos:
         for j in supermercado:
             for k in j.gondolas_rango:
