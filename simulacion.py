@@ -119,9 +119,12 @@ class Simulacion:
         max_prod = max(dict_prods.keys(), key=(lambda k:dict_prods[k]))
         self.estadisticas["top_productos_espontaneos"]=[max_prod,dict_prods[max_prod]]
 
-        # calcular_distnacia_recorrida
+        # calcular_distancia_recorrida
+        distancia = 0
         for cliente in self.clientes:
-            cliente.calcular_distancia_recorrida()
+            cliente.calcular_distancia_recorrida(self.grafo)
+            distancia += cliente.distancia_recorrida
+        self.estadisticas["distancia_media_recorrido"]=distancia/len(self.clientes)
 
         
         for k in self.estadisticas:

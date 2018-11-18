@@ -6,7 +6,7 @@ class Cliente:
     def __init__(self, lista_compras):
         self.lista_compras = lista_compras
         self.comprado = []
-        self.distancia_recorida = 0
+        self.distancia_recorrida = 0
         self.compras_espontaneas = []
         self.productos_vistos = []
         self.ruta = None
@@ -23,9 +23,14 @@ class Cliente:
             node = grafo.get_node(nodo)
             node.veces_visitado += 1
         
-    def calcular_distancia_recorrida(self):
-        for i in self.ruta:
-            print('cliente',self.ruta)
+    def calcular_distancia_recorrida(self, grafo):
+        final = False
+        i = 0
+        while i < len(self.ruta)-1: 
+            distancia,ruta = grafo.distancia_camino(self.ruta[i],self.ruta[i+1])
+            self.distancia_recorrida += distancia
+            i += 2
+        print('cliente',self.ruta, self.distancia_recorrida)
 
     
     def calcular_productos_vistos(self,grafo):
