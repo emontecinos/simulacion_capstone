@@ -14,7 +14,6 @@ class Cliente:
     
     def calcular_ruta(self, grafo):
         dict_nodos_a_visitar = grafo.buscar_gondola(self.lista_compras)
-        print('rrrrr',dict_nodos_a_visitar)
         lista_nodos_a_visitar = []
         for i in dict_nodos_a_visitar:
             if dict_nodos_a_visitar[i] not in lista_nodos_a_visitar:
