@@ -5,12 +5,15 @@ from calcular_ruta_productos_vistos import calcular_ruta_productos_vistos
 #from Cliente import Cliente
 #import random
 from simulacion import Simulacion
+import time
 
 if __name__ == "__main__":
+    t1 = time.time()
     grafo = Graph()
     grafo.cargar_base("datos_nodos_new.csv")
     simulacion = Simulacion(grafo)
-    simulacion.run(4, 40)
+    simulacion.run(20, 40)
+    print("Tardó: {}".format(time.time()-t1))
 
     
 

@@ -105,6 +105,19 @@ class Simulacion:
             for prod_espontaneo in cliente.compras_espontaneas:
                 numero+= 1
         self.estadisticas["numero_medio_compras_espontaneas"] = numero/len(self.clientes)
+
+        # top productos comprados espontaneamente
+        total_prods_espontaneos = []
+        for cliente in self.clientes:
+            for prod_espontaneo in cliente.compras_espontaneas:
+                total_prods_espontaneos.append(prod_espontaneo)
+        dict_prods = {}
+        for prod in total_prods_espontaneos:
+            if prod not in dict_prods.keys():
+                dict_prods[prod]=total_prods_espontaneos.count(prod)
+        max_prod = max(dict_prods.keys(), key=(lambda k:dict_prods[k]))
+        self.estadisticas["top_productos_espontaneos"]=[max_prod,dict_prods[max_prod]]
+
         
         for k in self.estadisticas:
             print(k, self.estadisticas[k])
