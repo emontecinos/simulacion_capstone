@@ -5,6 +5,7 @@ from encontrar_correlaciones import encontrar_corr_familia, encontrar_corr_produ
 class Cliente:
     def __init__(self, lista_compras):
         self.lista_compras = lista_compras
+        print('cliente',self.lista_compras)
         self.comprado = []
         self.distancia_recorrida = 0
         self.compras_espontaneas = []
@@ -13,11 +14,14 @@ class Cliente:
         self.probabilidad_total = 0
     
     def calcular_ruta(self, grafo):
+        print('cliente',self.lista_compras)
         dict_nodos_a_visitar = grafo.buscar_gondola(self.lista_compras)
         lista_nodos_a_visitar = []
+        print('cliente',dict_nodos_a_visitar)
         for i in dict_nodos_a_visitar:
             if dict_nodos_a_visitar[i] not in lista_nodos_a_visitar:
                 lista_nodos_a_visitar.append(dict_nodos_a_visitar[i])
+        print('cliente',lista_nodos_a_visitar)
         self.ruta = grafo.calcular_ruta_nodos(lista_nodos_a_visitar,[])
         for nodo in self.ruta:
             node = grafo.get_node(nodo)
