@@ -17,7 +17,7 @@ class Cliente:
         for i in dict_nodos_a_visitar:
             if dict_nodos_a_visitar[i] not in lista_nodos_a_visitar:
                 lista_nodos_a_visitar.append(dict_nodos_a_visitar[i])
-        self.ruta = grafo.calcular_ruta_nodos(lista_nodos_a_visitar)
+        self.ruta = grafo.calcular_ruta_nodos(lista_nodos_a_visitar,[])
     
     def calcular_productos_vistos(self,grafo):
         dict_productos_vistos = []
@@ -35,9 +35,9 @@ class Cliente:
         elif producto not in self.productos_vistos:
             return 0
         else:
-            a = 0.01
-            b = 0.1
-            c = 0.1
+            a = 0.15
+            b = 0.513
+            c = 0.0
             if self.comprado == []:
                factor_cant_productos = 1
                factor_corr_producto = encontrar_corr_producto(self.lista_compras, producto)
