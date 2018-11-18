@@ -17,12 +17,12 @@ lista_clientes = ["Durazno", "Crema", "Pavo", "Champu"]
 cliente = Cliente(lista_clientes)
 cliente.calcular_ruta(grafo)
 cliente.calcular_productos_vistos(grafo)
-print(cliente.productos_vistos)
 
-
+    
 for prod_visto in cliente.productos_vistos:
-    prob = cliente.probabilidad_comprar(prod_visto)
-    print("Producto: {}, Lista: {}, probabilidad: {}".format(prod_visto, cliente.lista_compras, prob))
+    cliente.comprar_producto(prod_visto)
+
+
 
 
 
