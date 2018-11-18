@@ -1,7 +1,7 @@
 from supermercat import GraphNode, Graph
 from buscar_gondola import buscar_gondola
 from calcular_ruta_productos_vistos import calcular_ruta_productos_vistos
-from compra_espontanea import compra_espontanea
+#from compra_espontanea import compra_espontanea
 from Cliente import Cliente
 
 grafo = Graph()
@@ -13,10 +13,18 @@ grafo.cargar_base("datos_nodos_new.csv")
 
 # Calcular nodo de una lista de productos
 
-productos = ["Durazno", "Crema", "Pavo", "Champú"]
-cliente = Cliente(productos)
+lista_clientes = ["Durazno", "Crema", "Pavo", "Champu"]
+cliente = Cliente(lista_clientes)
 cliente.calcular_ruta(grafo)
 cliente.calcular_productos_vistos(grafo)
+print(cliente.productos_vistos)
+
+
+for prod_visto in cliente.productos_vistos:
+    prob = cliente.probabilidad_comprar(prod_visto)
+    print("Producto: {}, Lista: {}, probabilidad: {}".format(prod_visto, cliente.lista_compras, prob))
+
+
 
 
 # comprar

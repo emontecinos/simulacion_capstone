@@ -1,4 +1,7 @@
 import random
+from encontrar_correlaciones import encontrar_corr_familia, encontrar_corr_producto
+
+
 class Cliente:
     def __init__(self, lista_compras):
         self.lista_compras = lista_compras
@@ -22,7 +25,7 @@ class Cliente:
             dict_productos_vistos.append(grafo.productos_visibles(nodo))
         for i in dict_productos_vistos:
             for j in i:
-                    if j not in self.productos_vistos:
+                    if j not in self.productos_vistos and j != None:
                             self.productos_vistos.append(j)
     
     def probabilidad_comprar(self, producto):
@@ -34,16 +37,16 @@ class Cliente:
             if self.comprado == []:
                factor_cant_productos = 1
                factor_corr_producto = encontrar_corr_producto(self.lista_compras, producto)
-               factor_cor_familia = encontrar_corr_familia(self.lista_compras, producto)
+               factor_corr_familia = encontrar_corr_familia(self.lista_compras, producto)
             else:
                 factor_cant_productos = 0.5 + 1/len(self.comprado)
                 factor_corr_producto = encontrar_corr_producto(self.lista_compras + self.comprado, producto)
                 factor_corr_familia = encontrar_corr_familia(self.lista_compras + self.comprado, producto)
-            probabilidad = factor_cant_productos + factor_corr_producto + factor_corr_familia
-            print('prob', probabilidad)
+            probabilidad = (float(factor_cant_productos) + float(factor_corr_producto) + float(factor_corr_familia))/3.5
             return probabilidad
     
-    def cargar_archivo(self, archivo):
+    # Ordena el txt en un csv
+    def ordenar_archivo(self, archivo):
         with open (archivo) as file:
             string = ""
             lineas = file.readlines()
@@ -58,6 +61,6 @@ class Cliente:
 
 
 if __name__ == "__main__":
-    cliente = Cliente(['Perro','Flan'])
-    cliente.cargar_archivo('matriz_correlaciones_productos.txt')
+    pass
+    #cliente.ordenar_archivo('matriz_correlaciones_productos.txt')
 

@@ -7,7 +7,7 @@ def encontrar_familia(producto):
             'Refresco', 'Cerveza', 'Jerez', 'Rompope', 'Sidra', 'Vino_de_mesa','Bebidas']
 
     Cafe_endulzantes_y_saborizantes = ['Azucar', 'Cafe_soluble', 'Cafe_tostado_y_molido', 'Jarabe_p/preparar_bebidas',
-                        'Miel_de_abeja', 'Bebida_energetica', 'Polvo_p/preparar_bebidas', 'Te','Cafe._endulzantes_y_saborizantes']
+                        'Miel_de_abeja', 'Bebida_energetica', 'Polvo_p/preparar_bebidas', 'Te','Cafe_endulzantes_y_saborizantes']
 
     Carnes = ['Bistec_de_diezmillo_de_res', 'Bistec_de_espaldilla_de_res', 'Chuleta_de_res', 'Falda_de_res',
             'Filete_de_res', 'Higado_de_res', 'Milanesa_de_res', 'Panza_de_res', 'Res', 'Retazo_hueso_de_res',
@@ -90,6 +90,7 @@ def encontrar_corr_producto(lista_productos, producto):
     with open ("csv_corr_productos.csv") as file:
         datos = csv.reader(file)
         informacion = [dato for dato in datos]
+        #print('encontrar_correlaciones', producto, informacion)
         pos_revisar = informacion[0].index(producto)
         for prod_movil in lista_productos:
             for dato in informacion[1:]:
@@ -99,7 +100,11 @@ def encontrar_corr_producto(lista_productos, producto):
 
 
 if __name__ == "__main__":
-    n = encontrar_corr_familia(["Durazno", "Crema", "Pavo", "Champu"],'Manteca')
-    m = encontrar_corr_producto(["Durazno", "Crema", "Pavo", "Champu"],'Manteca')
-    print(m)
+    productos_lista = ["Durazno", "Crema", "Pavo", "Champu"]
+    productos_vistos = ["Tuna","Manteca","Canela","Ajonjoli","Poroto"]
+    for prod_ver in productos_vistos:
+        m = encontrar_corr_familia(productos_lista,prod_ver)
+        n = encontrar_corr_producto(productos_lista,prod_ver)
+        print("Producto: {}, Corr_familia: {}, Corr_prod: {}".format(prod_ver, m, n))
+
     
