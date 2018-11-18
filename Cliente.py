@@ -45,11 +45,13 @@ class Cliente:
             if self.comprado == []:
                factor_cant_productos = 1
                factor_corr_producto = encontrar_corr_producto(self.lista_compras, producto)
-               factor_corr_familia = encontrar_corr_familia(self.lista_compras, producto)
+               #factor_corr_familia = encontrar_corr_familia(self.lista_compras, producto)
+               factor_corr_familia = 0
             else:
                 factor_cant_productos =  1/len(self.comprado)
                 factor_corr_producto = encontrar_corr_producto(list(set(self.lista_compras + self.comprado)), producto)
-                factor_corr_familia = encontrar_corr_familia(list(set(self.lista_compras + self.comprado)), producto)
+                #factor_corr_familia = encontrar_corr_familia(list(set(self.lista_compras + self.comprado)), producto)
+                factor_corr_familia = 0
 
             probabilidad = 1*(a*float(factor_cant_productos) + b*float(factor_corr_producto) + c*float(factor_corr_familia))/2
             self.probabilidad_total += probabilidad

@@ -54,7 +54,6 @@ class Simulacion:
         for i in listas_fam_prods:
             for j in i:
                self.productos.append(j)
-        print('prod',self.productos)
 
 
     def cargar_clientes(self, num_clientes, tope_boleta):
@@ -77,8 +76,8 @@ class Simulacion:
 
     def calcular_rutas_productos_clientes(self):
         for cliente in self.clientes:
-            cliente.calcular_ruta(grafo)
-            cliente.calcular_productos_vistos(grafo)
+            cliente.calcular_ruta(self.grafo)
+            cliente.calcular_productos_vistos(self.grafo)
     
     def comprar_clientes(self):
         for cliente in self.clientes:
