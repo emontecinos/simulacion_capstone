@@ -6,8 +6,8 @@ def encontrar_familia(producto):
     Bebidas = ['Agua_con_gas', 'Agua_sin_gas', 'Bebida_hidratante', 'Jugo_de_fruta',
             'Refresco', 'Cerveza', 'Jerez', 'Rompope', 'Sidra', 'Vino_de_mesa','Bebidas']
 
-    Cafe_endulzantes_y_saborizantes = ['Azucar', 'Cafe_soluble', 'Cafe_tostado_y_molido', 'Jarabe_p/preparar_bebidas',
-                        'Miel_de_abeja', 'Bebida_energetica', 'Polvo_p/preparar_bebidas', 'Te','Cafe_endulzantes_y_saborizantes']
+    Cafe_endulzantes_y_saborizantes = ['Azucar', 'Cafe_soluble', 'Cafe_tostado_y_molido', 'Jarabe_p.preparar_bebidas',
+                        'Miel_de_abeja', 'Bebida_energetica', 'Polvo_p.preparar_bebidas', 'Te','Cafe_endulzantes_y_saborizantes']
 
     Carnes = ['Bistec_de_diezmillo_de_res', 'Bistec_de_espaldilla_de_res', 'Chuleta_de_res', 'Falda_de_res',
             'Filete_de_res', 'Higado_de_res', 'Milanesa_de_res', 'Panza_de_res', 'Res', 'Retazo_hueso_de_res',
@@ -38,10 +38,10 @@ def encontrar_familia(producto):
                         'Huachinango', 'Jaiba', 'Langosta','Pescados_y_mariscos']
 
     Frutas_y_verduras = ['Acelga', 'Palta', 'Ajo', 'Alcachofa', 'Alcaparra', 'Almendras', 'Apio', 'Avellana', 'Betarraga',
-                        'Brocoli', 'Calabaza', 'Castañas', 'Cebolla', 'Champiñón', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
+                        'Brocoli', 'Calabaza', 'Castañas', 'Cebolla', 'Champinon', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
                         'Durazno', 'Espinacas', 'Fresa', 'Frijoles', 'Granada', 'Kiwi', 'Lechuga', 'Lima', 'Limon',
-                        'Mandarina', 'Mango', 'Manzana', 'Melón', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_(Uva_pasa)',
-                        'Pepino', 'Pera', 'Pimiento', 'Piña', 'Platano', 'Rabano', 'Sandia', 'Tomate',
+                        'Mandarina', 'Mango', 'Manzana', 'Melon', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_.Uva_pasa.',
+                        'Pepino', 'Pera', 'Pimiento', 'Pina', 'Platano', 'Rabano', 'Sandia', 'Tomate',
                         'Tuna', 'Uva', 'Zanahoria','Frutas_y_verduras']
 
     Lacteos_y_huevo = ['Huevo', 'Crema', 'Crema_batida', 'Mantequilla', 'Queso_mantecosi', 'Queso_gauda',
@@ -71,6 +71,7 @@ def encontrar_corr_familia_un_producto(producto1, producto2):
     with open ("csv_corr_familias.csv") as file:
         datos = csv.reader(file)
         informacion = [dato for dato in datos]
+        print(informacion[0], familia_revisar, producto2)
         pos_revisar = informacion[0].index(familia_revisar)
         for dato in informacion[1:]:
             if dato[0] == familia_movil:

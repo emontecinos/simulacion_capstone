@@ -13,8 +13,8 @@ grafo.cargar_base("datos_nodos_new.csv")
 
 listas_fam_prods = [['Aceite', 'Aceite_de_oliva', 'Grasa_comestible', 'Manteca',
                    'Manteca_de_cerdo', 'Margarina', 'Margarina_light'],['Agua_con_gas', 'Agua_sin_gas', 'Bebida_hidratante', 'Jugo_de_fruta',
-        'Refresco', 'Cerveza', 'Jerez', 'Rompope', 'Sidra', 'Vino_de_mesa'],['Azucar', 'Cafe_soluble', 'Cafe_tostado_y_molido', 'Jarabe_p/preparar_bebidas',
-                    'Miel_de_abeja', 'Bebida_energetica', 'Polvo_p/preparar_bebidas', 'Te'],['Bistec_de_diezmillo_de_res', 'Bistec_de_espaldilla_de_res', 'Chuleta_de_res', 'Falda_de_res',
+        'Refresco', 'Cerveza', 'Jerez', 'Rompope', 'Sidra', 'Vino_de_mesa'],['Azucar', 'Cafe_soluble', 'Cafe_tostado_y_molido', 'Jarabe_p.preparar_bebidas',
+                    'Miel_de_abeja', 'Bebida_energetica', 'Polvo_p.preparar_bebidas', 'Te'],['Bistec_de_diezmillo_de_res', 'Bistec_de_espaldilla_de_res', 'Chuleta_de_res', 'Falda_de_res',
         'Filete_de_res', 'Higado_de_res', 'Milanesa_de_res', 'Panza_de_res', 'Res', 'Retazo_hueso_de_res',
         'Ternera', 'Cabeza_de_cerdo', 'Carnes_molida_de_cerdo', 'Carnes_molida_de_res', 'Cerdo',
         'Chuleta_ahumada_de_cerdo', 'Espinazo_de_cerdo', 'Lomo_de_cerdo', 'Milanesa_de_cerdo', 'Pata_de_cerdo',
@@ -31,7 +31,7 @@ listas_fam_prods = [['Aceite', 'Aceite_de_oliva', 'Grasa_comestible', 'Manteca',
                     'Huachinango', 'Jaiba', 'Langosta'],['Acelga', 'Palta', 'Ajo', 'Alcachofa', 'Alcaparra', 'Almendras', 'Apio', 'Avellana', 'Betarraga',
                     'Brocoli', 'Calabaza', 'Castanas', 'Cebolla', 'Champinon', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
                     'Durazno', 'Espinacas', 'Fresa', 'Frijoles', 'Granada', 'Kiwi', 'Lechuga', 'Lima', 'Limon',
-                    'Mandarina', 'Mango', 'Manzana', 'Melón', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_(Uva_pasa)',
+                    'Mandarina', 'Mango', 'Manzana', 'Melón', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_.Uva_pasa.',
                     'Pepino', 'Pera', 'Pimiento', 'Pina', 'Platano', 'Rabano', 'Sandia', 'Tomate',
                     'Tuna', 'Uva', 'Zanahoria'],['Huevo', 'Crema', 'Crema_batida', 'Mantequilla', 'Queso_mantecosi', 'Queso_gauda',
                 'Queso_blanco', 'Yoghurt', 'Leche_condensada', 'Leche_en_polvo', 'Leche_evaporada',
@@ -48,7 +48,7 @@ productos_totales = []
 for i in listas_fam_prods:
     productos_totales += i
 
-clientes = []
+'''clientes = []
 for i in [5,5,6,6,7,7]:
     lista_cliente_i = random.sample(productos_totales,k=i)
     clientes.append(Cliente(lista_cliente_i))
@@ -56,18 +56,19 @@ for i in [5,5,6,6,7,7]:
     clientes[-1].calcular_productos_vistos(grafo)
     for prod_visto in clientes[-1].productos_vistos:
         clientes[-1].comprar_producto(prod_visto)
-    print(clientes[-1])
+    print(clientes[-1])'''
 
 
+lista_clientes=["Flan","Pollo"]
 
-"""
 cliente = Cliente(lista_clientes)
 cliente.calcular_ruta(grafo)
 cliente.calcular_productos_vistos(grafo)
 for prod in cliente.productos_vistos:
     cliente.comprar_producto(prod)
+print(cliente.productos_vistos)
 print(cliente.comprado)
-"""
+
 
 
 #  Calcular ruta minima

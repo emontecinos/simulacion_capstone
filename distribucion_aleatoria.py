@@ -8,8 +8,8 @@ def productos_esta_gondola(nombre):  ## Esta devuelve los slots de una gondola e
     Bebidas = ['Agua_con_gas', 'Agua_sin_gas', 'Bebida_hidratante', 'Jugo_de_fruta',
             'Refresco', 'Cerveza', 'Jerez', 'Rompope', 'Sidra', 'Vino_de_mesa']
 
-    Cafe_endulzantes_y_saborizantes = ['Azucar', 'Cafe_soluble', 'Cafe_tostado_y_molido', 'Jarabe_p/preparar_bebidas',
-                        'Miel_de_abeja', 'Bebida_energetica', 'Polvo_p/preparar_bebidas', 'Te']
+    Cafe_endulzantes_y_saborizantes = ['Azucar', 'Cafe_soluble', 'Cafe_tostado_y_molido', 'Jarabe_p.preparar_bebidas',
+                        'Miel_de_abeja', 'Bebida_energetica', 'Polvo_p.preparar_bebidas', 'Te']
 
     Carnes = ['Bistec_de_diezmillo_de_res', 'Bistec_de_espaldilla_de_res', 'Chuleta_de_res', 'Falda_de_res',
             'Filete_de_res', 'Higado_de_res', 'Milanesa_de_res', 'Panza_de_res', 'Res', 'Retazo_hueso_de_res',
@@ -40,10 +40,10 @@ def productos_esta_gondola(nombre):  ## Esta devuelve los slots de una gondola e
                         'Huachinango', 'Jaiba', 'Langosta']
 
     Frutas_y_verduras = ['Acelga', 'Palta', 'Ajo', 'Alcachofa', 'Alcaparra', 'Almendras', 'Apio', 'Avellana', 'Betarraga',
-                        'Brocoli', 'Calabaza', 'Castañas', 'Cebolla', 'Champiñón', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
+                        'Brocoli', 'Calabaza', 'Castañas', 'Cebolla', 'Champinon', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
                         'Durazno', 'Espinacas', 'Fresa', 'Frijoles', 'Granada', 'Kiwi', 'Lechuga', 'Lima', 'Limon',
-                        'Mandarina', 'Mango', 'Manzana', 'Melón', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_(Uva_pasa)',
-                        'Pepino', 'Pera', 'Pimiento', 'Piña', 'Platano', 'Rabano', 'Sandia', 'Tomate',
+                        'Mandarina', 'Mango', 'Manzana', 'Melon', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_.Uva_pasa.',
+                        'Pepino', 'Pera', 'Pimiento', 'Pina', 'Platano', 'Rabano', 'Sandia', 'Tomate',
                         'Tuna', 'Uva', 'Zanahoria']
 
     Lacteos_y_huevo = ['Huevo', 'Crema', 'Crema_batida', 'Mantequilla', 'Queso_mantecosi', 'Queso_gauda',
