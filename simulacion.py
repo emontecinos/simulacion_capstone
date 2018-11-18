@@ -54,15 +54,15 @@ class Simulacion:
         for i in listas_fam_prods:
             for j in i:
                self.productos.append(j)
-        print('prod',self.productos)
 
 
-    def cargar_clientes(self, num_clientes, tope_boleta):
-        with open('Boletas.csv', 'r') as Boletas:
+    def cargar_clientes(self,archivo, num_clientes, tope_boleta):
+        with open(archivo, 'r') as Boletas:
             datos = csv.reader(Boletas)
             informacion = [dato for dato in datos]
             for i in range(num_clientes):
-                numero_de_boleta = str(random.randint(1,int(tope_boleta)))
+                numero_de_boleta = str(i+1)
+                #numero_de_boleta = str(random.randint(1,int(tope_boleta)))
                 producto_en_lista = []
                 productoactual = 0
                 for row in informacion:
@@ -77,8 +77,8 @@ class Simulacion:
 
     def calcular_rutas_productos_clientes(self):
         for cliente in self.clientes:
-            cliente.calcular_ruta(grafo)
-            cliente.calcular_productos_vistos(grafo)
+            cliente.calcular_ruta(self.grafo)
+            cliente.calcular_productos_vistos(self.grafo)
     
     def comprar_clientes(self):
         for cliente in self.clientes:
@@ -106,12 +106,32 @@ class Simulacion:
             for prod_espontaneo in cliente.compras_espontaneas:
                 numero+= 1
         self.estadisticas["numero_medio_compras_espontaneas"] = numero/len(self.clientes)
+
+        # top productos comprados espontaneamente
+        total_prods_espontaneos = []
+        for cliente in self.clientes:
+            for prod_espontaneo in cliente.compras_espontaneas:
+                total_prods_espontaneos.append(prod_espontaneo)
+        dict_prods = {}
+        for prod in total_prods_espontaneos:
+            if prod not in dict_prods.keys():
+                dict_prods[prod]=total_prods_espontaneos.count(prod)
+        max_prod = max(dict_prods.keys(), key=(lambda k:dict_prods[k]))
+        self.estadisticas["top_productos_espontaneos"]=[max_prod,dict_prods[max_prod]]
+
+        # calcular_distancia_recorrida
+        distancia = 0
+        for cliente in self.clientes:
+            cliente.calcular_distancia_recorrida(self.grafo)
+            distancia += cliente.distancia_recorrida
+        self.estadisticas["distancia_media_recorrida"]=distancia/len(self.clientes)
+
         
         for k in self.estadisticas:
             print(k, self.estadisticas[k])
         
     def run(self, num_clientes, tope_boleta):
-        self.cargar_clientes(num_clientes, tope_boleta)
+        self.cargar_clientes("Boletas15.csv",num_clientes, tope_boleta)
         self.calcular_rutas_productos_clientes()
         self.comprar_clientes()
         self.actualizar_stats()

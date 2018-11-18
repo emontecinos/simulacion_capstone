@@ -6,7 +6,7 @@ class Cliente:
     def __init__(self, lista_compras):
         self.lista_compras = lista_compras
         self.comprado = []
-        self.distancia_recorida = 0
+        self.distancia_recorrida = 0
         self.compras_espontaneas = []
         self.productos_vistos = []
         self.ruta = None
@@ -22,6 +22,15 @@ class Cliente:
         for nodo in self.ruta:
             node = grafo.get_node(nodo)
             node.veces_visitado += 1
+        
+    def calcular_distancia_recorrida(self, grafo):
+        final = False
+        i = 0
+        while i < len(self.ruta)-1: 
+            distancia,ruta = grafo.distancia_camino(self.ruta[i],self.ruta[i+1])
+            self.distancia_recorrida += distancia
+            i += 2
+
     
     def calcular_productos_vistos(self,grafo):
         dict_productos_vistos = []
@@ -33,7 +42,6 @@ class Cliente:
                             self.productos_vistos.append(j)
     
     def probabilidad_comprar(self, producto):
-
         if producto in self.lista_compras:
             return 1
         elif producto not in self.productos_vistos:
@@ -45,11 +53,13 @@ class Cliente:
             if self.comprado == []:
                factor_cant_productos = 1
                factor_corr_producto = encontrar_corr_producto(self.lista_compras, producto)
-               factor_corr_familia = encontrar_corr_familia(self.lista_compras, producto)
+               #factor_corr_familia = encontrar_corr_familia(self.lista_compras, producto)
+               factor_corr_familia = 0
             else:
                 factor_cant_productos =  1/len(self.comprado)
                 factor_corr_producto = encontrar_corr_producto(list(set(self.lista_compras + self.comprado)), producto)
-                factor_corr_familia = encontrar_corr_familia(list(set(self.lista_compras + self.comprado)), producto)
+                #factor_corr_familia = encontrar_corr_familia(list(set(self.lista_compras + self.comprado)), producto)
+                factor_corr_familia = 0
 
             probabilidad = 1*(a*float(factor_cant_productos) + b*float(factor_corr_producto) + c*float(factor_corr_familia))/2
             self.probabilidad_total += probabilidad

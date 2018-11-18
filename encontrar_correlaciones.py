@@ -1,4 +1,9 @@
 import csv
+
+with open ("csv_corr_productos.csv") as file:
+    datos = csv.reader(file)
+    informacion = [dato for dato in datos]
+
 def encontrar_familia(producto):
     Aceites_y_grasas = ['Aceite', 'Aceite_de_oliva', 'Grasa_comestible', 'Manteca',
                    'Manteca_de_cerdo', 'Margarina', 'Margarina_light','Aceites_y_grasas']
@@ -68,14 +73,12 @@ def encontrar_familia(producto):
 def encontrar_corr_familia_un_producto(producto1, producto2):
     familia_movil = encontrar_familia(producto1)
     familia_revisar = encontrar_familia(producto2)
-    with open ("csv_corr_familias.csv") as file:
-        datos = csv.reader(file)
-        informacion = [dato for dato in datos]
-        #print(informacion[0], familia_revisar, producto2)
-        pos_revisar = informacion[0].index(familia_revisar)
-        for dato in informacion[1:]:
-            if dato[0] == familia_movil:
-                return dato[pos_revisar+1]
+
+    #print(informacion[0], familia_revisar, producto2)
+    pos_revisar = informacion[0].index(familia_revisar)
+    for dato in informacion[1:]:
+        if dato[0] == familia_movil:
+            return dato[pos_revisar+1]
 
 
 def encontrar_corr_familia(lista_productos, producto):
@@ -88,15 +91,12 @@ def encontrar_corr_familia(lista_productos, producto):
 
 def encontrar_corr_producto(lista_productos, producto):
     correlaciones = []
-    with open ("csv_corr_productos.csv") as file:
-        datos = csv.reader(file)
-        informacion = [dato for dato in datos]
-        #print('encontrar_correlaciones', producto, informacion)
-        pos_revisar = informacion[0].index(producto)
-        for prod_movil in lista_productos:
-            for dato in informacion[1:]:
-                if dato[0] == prod_movil:
-                    correlaciones.append(dato[pos_revisar+1])
+    #print('encontrar_correlaciones', producto, informacion)
+    pos_revisar = informacion[0].index(producto)
+    for prod_movil in lista_productos:
+        for dato in informacion[1:]:
+            if dato[0] == prod_movil:
+                correlaciones.append(dato[pos_revisar+1])
     return max(correlaciones)
 
 
@@ -107,5 +107,3 @@ if __name__ == "__main__":
         m = encontrar_corr_familia(productos_lista,prod_ver)
         n = encontrar_corr_producto(productos_lista,prod_ver)
         print("Producto: {}, Corr_familia: {}, Corr_prod: {}".format(prod_ver, m, n))
-
-    
