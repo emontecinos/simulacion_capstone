@@ -4,6 +4,7 @@ from calcular_ruta_productos_vistos import calcular_ruta_productos_vistos
 #from compra_espontanea import compra_espontanea
 from Cliente import Cliente
 import random
+from simulacion import simulacion
 
 
 grafo = Graph()
@@ -12,7 +13,7 @@ grafo.cargar_base("datos_nodos_new.csv")
 
 
 listas_fam_prods = [['Aceite', 'Aceite_de_oliva', 'Grasa_comestible', 'Manteca',
-                   'Manteca_de_cerdo', 'Margarina', 'Margarina_light'],['Agua_con_gas', 'Agua_sin_gas', 'Bebida_hidratante', 'Jugo_de_fruta',
+                   'Manteca_de_cerdo', 'Margarina', 'Margarina_Light'],['Agua_con_gas', 'Agua_sin_gas', 'Bebida_hidratante', 'Jugo_de_fruta',
         'Refresco', 'Cerveza', 'Jerez', 'Rompope', 'Sidra', 'Vino_de_mesa'],['Azucar', 'Cafe_soluble', 'Cafe_tostado_y_molido', 'Jarabe_p.preparar_bebidas',
                     'Miel_de_abeja', 'Bebida_energetica', 'Polvo_p.preparar_bebidas', 'Te'],['Bistec_de_diezmillo_de_res', 'Bistec_de_espaldilla_de_res', 'Chuleta_de_res', 'Falda_de_res',
         'Filete_de_res', 'Higado_de_res', 'Milanesa_de_res', 'Panza_de_res', 'Res', 'Retazo_hueso_de_res',
@@ -20,7 +21,7 @@ listas_fam_prods = [['Aceite', 'Aceite_de_oliva', 'Grasa_comestible', 'Manteca',
         'Chuleta_ahumada_de_cerdo', 'Espinazo_de_cerdo', 'Lomo_de_cerdo', 'Milanesa_de_cerdo', 'Pata_de_cerdo',
         'Pernil', 'Pavo', 'Pechuga_de_pollo', 'Pierna_de_pollo', 'Pollo', 'Pollo_entero'],['Arroz', 'Avena', 'Cereal_mixto', 'Harina_de_arroz'],['Ajonjoli', 'Canela', 'Chilorio', 'Clavo', 'Cochinita_pibil', 'Concentrado_de_pollo',
                         'Condimento_de_achiote', 'Hojas_de_perejil', 'Mayonesa', 'Mole_rojo_en_pasta',
-                        'Mostaza', 'Pimienta', 'Polvo_p/hornear', 'Sal', 'Sal_molida_de_mesa', 'Salsa',
+                        'Mostaza', 'Pimienta', 'Polvo_p.hornear', 'Sal', 'Sal_molida_de_mesa', 'Salsa',
                         'Salsa_catsup', 'Salsa_de_chile', 'Salsa_de_soya', 'Salsa_inglesa', 'Salsa_mexicana',
                         'Salsa_picante', 'Sopa_y_crema', 'Vainilla', 'Vinagre'],['Chocolate_en_tablillas', 'Colacion', 'Flan', 'Gelatina_en_polvo',
                     'Manjarate', 'Polvo_bebida_sabor_chocolate', 'Chandell', 'Postre_estilo_flan',
@@ -31,7 +32,7 @@ listas_fam_prods = [['Aceite', 'Aceite_de_oliva', 'Grasa_comestible', 'Manteca',
                     'Huachinango', 'Jaiba', 'Langosta'],['Acelga', 'Palta', 'Ajo', 'Alcachofa', 'Alcaparra', 'Almendras', 'Apio', 'Avellana', 'Betarraga',
                     'Brocoli', 'Calabaza', 'Castanas', 'Cebolla', 'Champinon', 'Ciruela', 'Ciruela_pasa', 'Coliflor',
                     'Durazno', 'Espinacas', 'Fresa', 'Frijoles', 'Granada', 'Kiwi', 'Lechuga', 'Lima', 'Limon',
-                    'Mandarina', 'Mango', 'Manzana', 'Melón', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_.Uva_pasa.',
+                    'Mandarina', 'Mango', 'Manzana', 'Melon', 'Naranja', 'Nuez', 'Papa', 'Papaya', 'Pasa_.Uva_pasa.',
                     'Pepino', 'Pera', 'Pimiento', 'Pina', 'Platano', 'Rabano', 'Sandia', 'Tomate',
                     'Tuna', 'Uva', 'Zanahoria'],['Huevo', 'Crema', 'Crema_batida', 'Mantequilla', 'Queso_mantecosi', 'Queso_gauda',
                 'Queso_blanco', 'Yoghurt', 'Leche_condensada', 'Leche_en_polvo', 'Leche_evaporada',
@@ -59,14 +60,13 @@ for i in [5,5,6,6,7,7]:
     print(clientes[-1])'''
 
 
-lista_clientes=["Flan","Pollo"]
+lista_clientes=["Melon","Mayonesa","Pollo"]
 
 cliente = Cliente(lista_clientes)
 cliente.calcular_ruta(grafo)
 cliente.calcular_productos_vistos(grafo)
 for prod in cliente.productos_vistos:
     cliente.comprar_producto(prod)
-print(cliente.productos_vistos)
 print(cliente.comprado)
 
 

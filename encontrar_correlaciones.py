@@ -19,7 +19,7 @@ def encontrar_familia(producto):
 
     Condimentos_y_aderezos = ['Ajonjoli', 'Canela', 'Chilorio', 'Clavo', 'Cochinita_pibil', 'Concentrado_de_pollo',
                             'Condimento_de_achiote', 'Hojas_de_perejil', 'Mayonesa', 'Mole_rojo_en_pasta',
-                            'Mostaza', 'Pimienta', 'Polvo_p/hornear', 'Sal', 'Sal_molida_de_mesa', 'Salsa',
+                            'Mostaza', 'Pimienta', 'Polvo_p.hornear', 'Sal', 'Sal_molida_de_mesa', 'Salsa',
                             'Salsa_catsup', 'Salsa_de_chile', 'Salsa_de_soya', 'Salsa_inglesa', 'Salsa_mexicana',
                             'Salsa_picante', 'Sopa_y_crema', 'Vainilla', 'Vinagre','Condimentos_y_aderezos']
 
@@ -59,7 +59,7 @@ def encontrar_familia(producto):
     Limpieza_del_hogar = ['Acondicionador_de_telas', 'Barra_limpiadora', 'Blanqueador', 'Detergente_ropa',
                     'Detergente_ropa_liquido', 'Detergente_ropa_polvo', 'Detergente_trastes',
                     'Insecticida_aerosol', 'Jabon_de_pasta', 'Jabon_limpiador', 'Limpiador_liquido',
-                    'Limpiador_lìquido_piso', 'Servilletas_de_papel', 'Suavizante_ropa', 'Toalla_de_papel','Limpieza_del_hogar']
+                    'Limpiador_liquido_piso', 'Servilletas_de_papel', 'Suavizante_ropa', 'Toalla_de_papel','Limpieza_del_hogar']
     familias = [Aceites_y_grasas,Bebidas,Cafe_endulzantes_y_saborizantes,Carnes,Cereales,Condimentos_y_aderezos,Dulces_y_golosinas,Legumbres_secas,Pan_y_derivados_del_trigo,Pescados_y_mariscos,Frutas_y_verduras,Lacteos_y_huevo,Fiambreria,Cuidado_personal,Limpieza_del_hogar]
     for familia in familias:
         if producto in familia:
@@ -71,7 +71,7 @@ def encontrar_corr_familia_un_producto(producto1, producto2):
     with open ("csv_corr_familias.csv") as file:
         datos = csv.reader(file)
         informacion = [dato for dato in datos]
-        print(informacion[0], familia_revisar, producto2)
+        #print(informacion[0], familia_revisar, producto2)
         pos_revisar = informacion[0].index(familia_revisar)
         for dato in informacion[1:]:
             if dato[0] == familia_movil:

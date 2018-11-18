@@ -9,6 +9,7 @@ class GraphNode:
         self.id = id
         self.x = x
         self.y = y
+        self.veces_visitado = 0
         for i in self.conexiones:
             self.conectar(i)
 
@@ -33,7 +34,7 @@ class Graph:
     def __init__(self):
         self.nodos = dict()
         self.gondolas = {}
-        nombres_gondolas = ["1I", "1D", "2I", "2D", "3I", "3D", "4I", "4D", "5I", "5D", "6I", "6D", "7I", "7D", "8I", "8D", "9I", "9D", "10I", "10D", "11I", "11D", "12I", "12D", "13I", "13D", "14I", "14D", "15I", "15D", "16I", "16D", "17I", "17D", "18I", "18D", "19"]
+        nombres_gondolas = ["1I", "1D", "2I", "2D", "3I", "3D", "4I", "4D", "5I", "5D", "6I", "6D", "7I", "7D", "8I", "8D", "9I", "9D", "10I", "10D", "11I", "11D", "12I", "12D", "13I", "13D", "14I", "14D", "15I", "15D", "16I", "16D", "17I", "17D", "18I", "18D", "19I","19D"]
         for i in nombres_gondolas:
             self.gondolas[i] = Gondola(i)
 
