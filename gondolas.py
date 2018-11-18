@@ -27,9 +27,17 @@ class Gondola:
 
     def swap(self, productos_propios, producto_origen, gondola_origen): #se cambian los espacios de los productos propios por el producto origen
         i , j = self.donde_parte_y_donde_termina([producto_origen], gondola_origen)
+        productos_esquina = ["Margarina", "Cafe_tostado_y_molido", "Te", "Mostaza", "Chocolate_en_tablillas", "Galletas_populares", "Palta", "Castanas"]
         lista_origen = gondola_origen.espacios[i:j+1]
         g, h = self.donde_parte_y_donde_termina(productos_propios, self)
         lista_propia = self.espacios[g: h + 1]
+        if producto_origen in productos_esquina:
+            if not (g == 0 or h+1 == self.largo):
+                return False
+        for producto in productos_propios:
+            if producto in productos_esquina:
+                if not (i == 0 or j+1 == self.largo):
+                    return False
         self.espacios[g: h + 1] = lista_origen
         gondola_origen.espacios[i:j + 1] = lista_propia
 
@@ -133,10 +141,10 @@ class Gondola:
         return "{}".format(self.id)
 
 if __name__ == "__main__":
-    slots = ["leche", "cereal", "queso", "trigo","trigo", "pan", "pan", "carne","carne","carne","carne", None, None, None, None, None, None]
+    slots = ["Margarina", "cereal", "queso", "trigo","trigo", "pan", "pan", "carne","carne","carne","carne", None, None, None, None, None, None]
     gondola = Gondola(0, 17)
     gondola.espacios = slots
-    print(gondola.manejo_swap("cereal", "carne", gondola))
+    print(gondola.manejo_swap("cereal", "trigo", gondola))
     print(gondola.espacios)
 
 
