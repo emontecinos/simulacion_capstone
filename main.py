@@ -21,7 +21,7 @@ cliente.calcular_productos_vistos(grafo)
     
 for prod_visto in cliente.productos_vistos:
     cliente.comprar_producto(prod_visto)
-
+print(cliente.comprado)
 
 
 
