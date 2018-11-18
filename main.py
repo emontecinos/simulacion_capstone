@@ -14,14 +14,15 @@ grafo.cargar_base("datos_nodos_new.csv")
 # Calcular nodo de una lista de productos
 
 lista_clientes = ["Durazno", "Crema", "Pavo", "Champu"]
-cliente = Cliente(lista_clientes)
-cliente.calcular_ruta(grafo)
-cliente.calcular_productos_vistos(grafo)
-
-    
-for prod_visto in cliente.productos_vistos:
-    cliente.comprar_producto(prod_visto)
-print(cliente.comprado)
+clientes = []
+for i in range(10):  
+    clientes.append(Cliente(lista_clientes))
+    print(clientes[-1])
+    clientes[-1].calcular_ruta(grafo)
+    clientes[-1].calcular_productos_vistos(grafo)
+    for prod_visto in clientes[-1].productos_vistos:
+        clientes[-1].comprar_producto(prod_visto)
+    print(clientes[-1].comprado)
 
 
 

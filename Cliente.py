@@ -35,19 +35,19 @@ class Cliente:
         elif producto not in self.productos_vistos:
             return 0
         else:
-            a = 0.5
-            b = 0.5
-            c = 0.5
+            a = 0.01
+            b = 0.1
+            c = 0.1
             if self.comprado == []:
                factor_cant_productos = 1
                factor_corr_producto = encontrar_corr_producto(self.lista_compras, producto)
                factor_corr_familia = encontrar_corr_familia(self.lista_compras, producto)
             else:
-                factor_cant_productos = 0 # 1/len(self.comprado)
+                factor_cant_productos =  1/len(self.comprado)
                 factor_corr_producto = encontrar_corr_producto(list(set(self.lista_compras + self.comprado)), producto)
                 factor_corr_familia = encontrar_corr_familia(list(set(self.lista_compras + self.comprado)), producto)
 
-            probabilidad = (a*float(factor_cant_productos) + b*float(factor_corr_producto)*c*float(factor_corr_familia))/3
+            probabilidad = (a*float(factor_cant_productos) + b*float(factor_corr_producto) + c*float(factor_corr_familia))/3
             return probabilidad
     
     def comprar_producto(self, producto):
@@ -72,6 +72,9 @@ class Cliente:
                 string += "\n"
         with open ("csv_corr_productos.csv",'w') as file:
             file.write(string)
+
+    def __repr__(self):
+        return "Lista_compras: {}, Comprados: {}".format(self.lista_compras, self.comprado)
 
 
 if __name__ == "__main__":
