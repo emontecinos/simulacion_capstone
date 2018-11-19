@@ -38,6 +38,32 @@ class Graph:
         for i in nombres_gondolas:
             self.gondolas[i] = Gondola(i)
 
+
+    def cargar_gondolas(self,archivo):
+        if archivo == "distr_gondolas.csv":
+            with open(archivo) as file:
+                datos = csv.reader(file)
+                informacion = [dato for dato in datos]
+                for gondole in informacion:
+                    g_id = gondole[0]
+                    g_productos = gondole[1:]
+                    self.gondolas[g_id].espacios = g_productos
+        else:
+            for gond_key in self.gondolas:
+                self.gondolas[gond_key].cargar_gondola_inicial()
+    
+    def guardar_gondolas(self):
+        string = ""
+        for gondola in self.gondolas:
+            string += self.gondolas[gondola].id
+            for slot in self.gondolas[gondola].espacios:
+                string += ","
+                string += slot
+            string += "\n"
+        with open ("distr_gondolas.csv","w") as file:
+            file.write(string)
+
+
     def buscar_gondola(self, listadeproductos):
         ubicaciones = {}
         for p in listadeproductos:

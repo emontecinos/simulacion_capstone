@@ -10,9 +10,15 @@ import time
 if __name__ == "__main__":
     t1 = time.time()
     grafo = Graph()
+    
     grafo.cargar_base("datos_nodos_new.csv")
+    grafo.cargar_gondolas("distr_gondolas.csv")
+    for gondola in grafo.gondolas:
+        print(grafo.gondolas[gondola].espacios)    
     simulacion = Simulacion(grafo)
+    
     simulacion.run(50, 4000)
+    
     print("Tardó: {}".format(time.time()-t1))
 
     

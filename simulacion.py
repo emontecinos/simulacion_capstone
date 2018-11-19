@@ -156,12 +156,13 @@ if __name__ == "__main__":
     print(len(simulacion.clientes))
     # for grafo in simulacion.grafo.nodos:
     #   print(simulacion.grafo.get_node(grafo).veces_visitado)
-    #gondola = grafo.gondolas["1I"]
-    #gondola_2 = grafo.gondolas["10I"]
-    #print(gondola)
-    #print(gondola_2)
+    gondola = grafo.gondolas["1I"]
+    gondola_2 = grafo.gondolas["10I"]
+    print(gondola)
+    print(gondola_2)
     print("_______________________")
     gondola.manejo_swap('Falda_de_res', 'Pollo', gondola_2)
-    #print(gondola)
-    #print(gondola_2)
+    #grafo.guardar_gondolas()
+    print(gondola)
+    print(gondola_2)
     simulacion.run(50, 400)

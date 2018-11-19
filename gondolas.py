@@ -4,8 +4,12 @@ class Gondola:
 
     def __init__(self, id, espacios = [None for i in range(17)]):
         self.id = id
-        self.espacios = productos_esta_gondola(id) # [None for i in range(17)]
+        self.espacios = None
         self.largo = len(self.espacios) if self.espacios else 17
+        #self.cargar_gondola_inicial()
+
+    def cargar_gondola_inicial(self):
+        self.espacios = productos_esta_gondola(self.id) # [None for i in range(17)]
 
     def manejo_swap(self, producto_propio, producto_origen, gondola_origen): #esta funcion maneja la solicitud de un swap
         largo_producto = gondola_origen.espacios.count(producto_origen)
@@ -136,6 +140,7 @@ class Gondola:
                 return False, None
         else:
             return False, None
+    
 
     def __str__(self):
         string = f" ------------\n| Gondola: {self.id} |\n-------------------\n"

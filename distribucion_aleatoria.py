@@ -1,6 +1,6 @@
 ## define un orden aleatorio del supermercado
 
-def productos_esta_gondola(nombre):  ## Esta devuelve los slots de una gondola en particular
+def productos_esta_gondola(nombre):  ## Esta devuelve los slots cargados de una gondola en particular
     slots = []
 
     if nombre == "1I":  #Carnes
