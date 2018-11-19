@@ -60,7 +60,6 @@ if __name__ == "__main__":
         #     print("-----------------------NO SE ENCONTRO MEJORA-----------------------------------")
         #     break
         grafo_iteracion_actual = deepcopy(grafo)
-<<<<<<< HEAD
         print("ESTASITICAS A SUPERAR")
         print("prob total : {}".format(estadisticas_prom["probabilidad_total"]))
         print("utilidad_espontanea: {}".format(estadisticas_prom["utilidad_espontanea"]))
@@ -73,21 +72,7 @@ if __name__ == "__main__":
             nro_swap = 1
             factible = swap[0](swap[1], swap[2], swap[3])
             buen_candidato = True
-=======
-        lista_swaps = swapity_swap(simulacion.grafo)["Carnes"]
-        #print(lista_swaps)
-        print("prob total : {}".format(estadisticas_prom["probabilidad_total"]))
-        print("utilidad_espontanea: {}".format(estadisticas_prom["utilidad_espontanea"]))
-        print("numero medio de compras: {}".format(estadisticas_prom["numero_medio_compras_espontaneas"]))
-        for swap in lista_swaps:
-            print("bla")
-            print(swap)
-            print("bla")
-            nro_swap = 1
-            factible = swap[0](swap[1], swap[2], swap[3])
-            for item in simulacion.grafo.gondolas.items():
-                print(item[0], item[1].espacios)
->>>>>>> 0b0780fa04c3d85610e1bc99675e07788b75b842
+
             if factible:
                 estadisticas_nuevas = dict()
                 estadisticas_nuevas["probabilidad_total"] = 0
@@ -96,13 +81,8 @@ if __name__ == "__main__":
                 estadisticas_nuevas["numero_medio_compras_espontaneas"] = 0
                 estadisticas_nuevas["top_productos_espontaneos"] = 0
                 estadisticas_nuevas["distancia_media_recorrida"] = 0
-<<<<<<< HEAD
                 for nro_iter in range(iteraciones_por_config):
                     revision_mitad = True
-=======
-
-                for i in range(iteraciones_por_config):
->>>>>>> 0b0780fa04c3d85610e1bc99675e07788b75b842
                     estadisticas_iteracion = simulacion.run(clientes_iniciales, limite_boletas)
                     for estadistica in estadisticas_iteracion.items():
                         if type(estadistica[1]) is not list:
@@ -151,18 +131,6 @@ if __name__ == "__main__":
                 else:
                     print("Mal candidato")
                     print("_______________________")
-<<<<<<< HEAD
         grafo = grafo_iteracion_actual
 
-=======
 
-                    simulacion.grafo.guardar_gondolas()
-                    break
-                if nro_swap == len(lista_swaps):
-                    matar = 1
-                nro_swap += 1
-                grafo = deepcopy(grafo_iteracion_actual)
-                print("_______________________")
-            else:
-                nro_swap += 1
->>>>>>> 0b0780fa04c3d85610e1bc99675e07788b75b842
