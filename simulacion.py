@@ -1,6 +1,7 @@
 import csv
 from Cliente import Cliente
 from supermercat import GraphNode, Graph
+from swapity_swaps import swapity_swap
 
 import random
 
@@ -150,18 +151,26 @@ class Simulacion:
 if __name__ == "__main__":
     grafo = Graph()
     grafo.cargar_base("datos_nodos_new.csv")
+    grafo.cargar_gondolas("distr_gondolas.csv")
+    
     simulacion = Simulacion(grafo)
+    print("1I",simulacion.grafo.gondolas["1I"].espacios)
+    #print("1D",simulacion.grafo.gondolas["1D"].espacios)
+    print("_____________________")
     simulacion.run(50, 400)
-    print(len(simulacion.clientes))
-    # for grafo in simulacion.grafo.nodos:
-    #   print(simulacion.grafo.get_node(grafo).veces_visitado)
-    gondola = grafo.gondolas["1I"]
-    gondola_2 = grafo.gondolas["10I"]
-    print(gondola)
-    print(gondola_2)
-    print("_______________________")
-    gondola.manejo_swap('Falda_de_res', 'Pollo', gondola_2)
-    #grafo.guardar_gondolas()
-    print(gondola)
-    print(gondola_2)
+    lista_spwaps = swapity_swap(simulacion.grafo)["Carnes"]
+    swap0 = lista_spwaps[0]
+    swap = (simulacion.grafo.gondolas["1I"].manejo_swap,"Chuleta_de_res","Higado_de_res",simulacion.grafo.gondolas["1I"])
+    swap[0](swap[1],swap[2],swap[3])
+    # hacer primer swap
+    print("1I",simulacion.grafo.gondolas["1I"].espacios)
+    #print("1D",simulacion.grafo.gondolas["1D"].espacios)
+    print("_____________________")
+    print("1I",simulacion.grafo.gondolas["1I"].espacios)
+    #print("1D",simulacion.grafo.gondolas["1D"].espacios)
+    print("_____________________")
     simulacion.run(50, 400)
+
+
+
+
