@@ -144,7 +144,6 @@ class Graph:
             inicial = ruta[-1]
         # Cargar rutas entre todos los nodos a visitar
         dict_nodos = {}
-        print('supermercat',nodos)
         for nodo_i in nodos:
             if nodo_i not in ruta:
                 distancia, camino = self.distancia_camino(inicial, nodo_i)
