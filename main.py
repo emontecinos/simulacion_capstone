@@ -33,14 +33,14 @@ if __name__ == "__main__":
 
 ########################################################################################################################
     print("ESTADISTICAS INICIALES")
-    for i in range(iteraciones_por_config):
+    for i in range(20):
         estadisticas_iniciales = simulacion.run(clientes_iniciales, limite_boletas)
         for estadistica in estadisticas_iniciales.items():
             if type(estadistica[1]) is not list:
                 if estadistica[0] == "probabilidad_total":
-                    estadisticas_prom[estadistica[0]] += estadistica[1] / (iteraciones_por_config * clientes_iniciales)
+                    estadisticas_prom[estadistica[0]] += estadistica[1] / (20 * clientes_iniciales)
                 else:
-                    estadisticas_prom[estadistica[0]] += estadistica[1] / iteraciones_por_config
+                    estadisticas_prom[estadistica[0]] += estadistica[1] / 20
     print("Tardó: {}".format(time.time()-t1))
     print("_______________________")
 
@@ -53,8 +53,8 @@ if __name__ == "__main__":
     for lista_fam in lista_swaps.values():
         lista += lista_fam
     lista_swaps = lista
-    for x in lista_swaps:
-        print(x[1:3])
+    # for x in lista_swaps:
+    #     print(x[1:3])
     for i in range(veces_que_busca_mejora):
         # if matar:
         #     print("-----------------------NO SE ENCONTRO MEJORA-----------------------------------")
@@ -92,10 +92,9 @@ if __name__ == "__main__":
                                 estadisticas_nuevas[estadistica[0]] += estadistica[1] / iteraciones_por_config
                     if ((nro_iter + 1) >= iteraciones_por_config / 2) and revision_mitad:
                         revision_mitad = False
-                        if (estadisticas_prom["utilidad_espontanea"] * 1.05/2 < estadisticas_nuevas[
-                                    "utilidad_espontanea"] and estadisticas_prom[
-                                     "numero_medio_compras_espontaneas"] * 1.05/2 < estadisticas_nuevas[
-                                     "numero_medio_compras_espontaneas"]):
+                        if estadisticas_prom["utilidad_espontanea"] * 1.05/2 < estadisticas_nuevas["utilidad_espontanea"] \
+                                and estadisticas_prom["numero_medio_compras_espontaneas"] * 1.05/2 < estadisticas_nuevas[
+                                     "numero_medio_compras_espontaneas"]:
                             print("Estadisticas a la mitad:")
                             print("p total {}".format(estadisticas_nuevas["probabilidad_total"]))
                             print("ut espontanea {}".format(estadisticas_nuevas["utilidad_espontanea"]))
