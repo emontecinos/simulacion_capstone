@@ -138,10 +138,3 @@ def swapity_swap(grafo):
 
 if __name__ == '__main__':
     print(swapity_swap(super)["Cereales"])
-
-
-
-
-
-
-
