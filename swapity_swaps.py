@@ -139,7 +139,7 @@ def swapity_swap(grafo):
             i += 1
     return dict_swaps
 
-print(swapity_swap(super))
+print(swapity_swap(super)["Cereales"])
 
 
 
