@@ -30,7 +30,6 @@ class Cliente:
             distancia,ruta = grafo.distancia_camino(self.ruta[i],self.ruta[i+1])
             self.distancia_recorrida += distancia
             i += 2
-        print('cliente',self.ruta, self.distancia_recorrida)
 
     
     def calcular_productos_vistos(self,grafo):

@@ -56,8 +56,8 @@ class Simulacion:
                self.productos.append(j)
 
 
-    def cargar_clientes(self, num_clientes, tope_boleta):
-        with open('Boletas.csv', 'r') as Boletas:
+    def cargar_clientes(self,archivo, num_clientes, tope_boleta):
+        with open(archivo, 'r') as Boletas:
             datos = csv.reader(Boletas)
             informacion = [dato for dato in datos]
             for i in range(num_clientes):
@@ -124,14 +124,14 @@ class Simulacion:
         for cliente in self.clientes:
             cliente.calcular_distancia_recorrida(self.grafo)
             distancia += cliente.distancia_recorrida
-        self.estadisticas["distancia_media_recorrido"]=distancia/len(self.clientes)
+        self.estadisticas["distancia_media_recorrida"]=distancia/len(self.clientes)
 
         
         for k in self.estadisticas:
             print(k, self.estadisticas[k])
         
     def run(self, num_clientes, tope_boleta):
-        self.cargar_clientes(num_clientes, tope_boleta)
+        self.cargar_clientes("Boletas.csv",num_clientes, tope_boleta)
         self.calcular_rutas_productos_clientes()
         self.comprar_clientes()
         self.actualizar_stats()

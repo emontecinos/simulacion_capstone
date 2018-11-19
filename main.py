@@ -12,10 +12,21 @@ if __name__ == "__main__":
     grafo = Graph()
     grafo.cargar_base("datos_nodos_new.csv")
     simulacion = Simulacion(grafo)
-    simulacion.run(5, 40)
+    simulacion.run(50, 70)
     print("Tardó: {}".format(time.time()-t1))
 
     
+
+
+
+
+
+
+
+
+
+
+
 
     '''clientes = []
     for i in [5,5,6,6,7,7]:
