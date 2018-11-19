@@ -15,7 +15,7 @@ if __name__ == "__main__":
     grafo.cargar_base("datos_nodos_new.csv")
     grafo.cargar_gondolas("distr_gondolas.csv")
     ######################## PARAMETROS DE LA SIMULACION ###########################
-    clientes_iniciales = 10
+    clientes_iniciales = 4
     limite_boletas = 100
     iteraciones_por_config = 10
     veces_que_busca_mejora = 1
@@ -57,14 +57,19 @@ if __name__ == "__main__":
             print("-----------------------NO SE ENCONTRO MEJORA-----------------------------------")
             break
         grafo_iteracion_actual = deepcopy(grafo)
-        lista_swaps = swapity_swap(grafo)["Carnes"]
-        print(lista_swaps)
+        lista_swaps = swapity_swap(simulacion.grafo)["Carnes"]
+        #print(lista_swaps)
         print("prob total : {}".format(estadisticas_prom["probabilidad_total"]))
         print("utilidad_espontanea: {}".format(estadisticas_prom["utilidad_espontanea"]))
         print("numero medio de compras: {}".format(estadisticas_prom["numero_medio_compras_espontaneas"]))
         for swap in lista_swaps:
+            print("bla")
+            print(swap)
+            print("bla")
             nro_swap = 1
             factible = swap[0](swap[1], swap[2], swap[3])
+            for item in simulacion.grafo.gondolas.items():
+                print(item[0], item[1].espacios)
             if factible:
                 estadisticas_nuevas = dict()
                 estadisticas_nuevas["probabilidad_total"] = 0
@@ -73,6 +78,7 @@ if __name__ == "__main__":
                 estadisticas_nuevas["numero_medio_compras_espontaneas"] = 0
                 estadisticas_nuevas["top_productos_espontaneos"] = 0
                 estadisticas_nuevas["distancia_media_recorrida"] = 0
+
                 for i in range(iteraciones_por_config):
                     estadisticas_iteracion = simulacion.run(clientes_iniciales, limite_boletas)
                     for estadistica in estadisticas_iteracion.items():
@@ -96,7 +102,8 @@ if __name__ == "__main__":
                     estadisticas_prom = estadisticas_nuevas
                     print('La ESTADISTICA MEJORO')
                     print("_______________________")
-                    grafo.guardar_gondolas()
+
+                    simulacion.grafo.guardar_gondolas()
                     break
                 if nro_swap == len(lista_swaps):
                     matar = 1

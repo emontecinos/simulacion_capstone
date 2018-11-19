@@ -1,8 +1,5 @@
 from supermercat import Graph
 
-super = Graph()
-super.cargar_gondolas("distr_gondolas.csv")
-
 
 def buscar_gondola(producto, super):
     nodos = []
@@ -132,8 +129,8 @@ def swapity_swap(grafo):
             for j in range(i+ 1,len(lista_productos)):
                 producto_solicitado = lista_productos[j]
                 t += 1
-                tupla = (buscar_gondola(producto_solicitado, super).manejo_swap, producto_solicitado
-                    , producto_solicitante, buscar_gondola(producto_solicitante, super))
+                tupla = (buscar_gondola(producto_solicitado, grafo).manejo_swap, producto_solicitado
+                    , producto_solicitante, buscar_gondola(producto_solicitante, grafo))
                 dict_swaps[familia].append(tupla)
                 j += 1
             i += 1
