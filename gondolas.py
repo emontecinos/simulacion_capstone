@@ -43,6 +43,8 @@ class Gondola:
             if producto in productos_esquina:
                 if not (i == 0 or j+1 == self.largo):
                     return False
+        if ((len(lista_origen) != len(self.espacios[g: h + 1])) or (len(gondola_origen.espacios[i:j + 1]) != len(lista_propia))):
+            return False
         self.espacios[g: h + 1] = lista_origen
         gondola_origen.espacios[i:j + 1] = lista_propia
         return True

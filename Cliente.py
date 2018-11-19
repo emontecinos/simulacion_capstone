@@ -8,7 +8,7 @@ class Cliente:
         self.comprado = []
         self.distancia_recorrida = 0
         self.compras_espontaneas = []
-        self.productos_vistos = set()
+        self.productos_vistos = []
         self.ruta = None
         self.probabilidad_total = 0
     
@@ -39,7 +39,7 @@ class Cliente:
         for i in dict_productos_vistos:
             for j in i:
                     if j not in self.productos_vistos and j != None:
-                            self.productos_vistos.add(j)
+                            self.productos_vistos.append(j)
     
     def probabilidad_comprar(self, producto):
         if producto in self.lista_compras:
