@@ -137,6 +137,7 @@ class Simulacion:
         
     def run(self, num_clientes, tope_boleta):
         self.estadisticas = {}
+        self.clientes=[]
         self.cargar_clientes("Boletas_completas.csv",num_clientes, tope_boleta)
         self.calcular_rutas_productos_clientes()
         self.comprar_clientes()
@@ -152,10 +153,11 @@ if __name__ == "__main__":
     grafo.cargar_base("datos_nodos_new.csv")
     simulacion = Simulacion(grafo)
     simulacion.run(50, 400)
+    print(len(simulacion.clientes))
     # for grafo in simulacion.grafo.nodos:
     #   print(simulacion.grafo.get_node(grafo).veces_visitado)
-    gondola = grafo.gondolas["1I"]
-    gondola_2 = grafo.gondolas["10I"]
+    #gondola = grafo.gondolas["1I"]
+    #gondola_2 = grafo.gondolas["10I"]
     #print(gondola)
     #print(gondola_2)
     print("_______________________")
@@ -163,4 +165,3 @@ if __name__ == "__main__":
     #print(gondola)
     #print(gondola_2)
     simulacion.run(50, 400)
-
