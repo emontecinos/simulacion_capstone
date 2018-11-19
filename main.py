@@ -12,7 +12,7 @@ if __name__ == "__main__":
     grafo = Graph()
     grafo.cargar_base("datos_nodos_new.csv")
     simulacion = Simulacion(grafo)
-    simulacion.run(50, 70)
+    simulacion.run(50, 500)
     print("Tardó: {}".format(time.time()-t1))
 
     

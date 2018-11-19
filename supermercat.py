@@ -150,7 +150,7 @@ class Graph:
                 dict_nodos[(inicial,nodo_i)] = [camino, distancia]
                 if inicial == nodo_i:
                     dict_nodos[(inicial,nodo_i)] = inicial
-
+            print("EEWEEWEEWWEWWE",nodo_i, nodos)
         par_minimo = min(dict_nodos.keys(), key=(lambda k: dict_nodos[k][-1]))
 
         for t in dict_nodos[par_minimo][0]:

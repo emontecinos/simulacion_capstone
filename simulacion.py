@@ -131,7 +131,7 @@ class Simulacion:
             print(k, self.estadisticas[k])
         
     def run(self, num_clientes, tope_boleta):
-        self.cargar_clientes("Boletas.csv",num_clientes, tope_boleta)
+        self.cargar_clientes("Boletas15.csv",num_clientes, tope_boleta)
         self.calcular_rutas_productos_clientes()
         self.comprar_clientes()
         self.actualizar_stats()
