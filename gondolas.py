@@ -138,7 +138,13 @@ class Gondola:
             return False, None
 
     def __str__(self):
-        return "{}".format(self.id)
+        string = f" ------------\n| Gondola: {self.id} |\n-------------------\n"
+        i = 0
+        for slot in self.espacios:
+            i += 1
+            string += f"Slot: {i} --> {slot}\n"
+        string += "-------------------"
+        return string
 
 if __name__ == "__main__":
     slots = ["Margarina", "cereal", "queso", "trigo","trigo", "pan", "pan", "carne","carne","carne","carne", None, None, None, None, None, None]
