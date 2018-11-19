@@ -23,8 +23,9 @@ class Gondola:
             else:
                 juntar = self.juntar_producto_adyacente(producto_propio, largo_producto)
                 if juntar:
-                    self.swap(juntar, producto_origen, gondola_origen)
-                    return True ###### ver si el swap es con la misma gondola para no swapear dos veces
+                    se_hizo = self.swap(juntar, producto_origen, gondola_origen)
+                    if se_hizo:
+                        return True ###### ver si el swap es con la misma gondola para no swapear dos veces
                 return False
 
 
@@ -44,6 +45,7 @@ class Gondola:
                     return False
         self.espacios[g: h + 1] = lista_origen
         gondola_origen.espacios[i:j + 1] = lista_propia
+        return True
 
 
 
@@ -85,6 +87,7 @@ class Gondola:
         #     print("derecha")
         #     return intento_der[1]
         print("NO SE PUEE!")
+        return False
 
 
 

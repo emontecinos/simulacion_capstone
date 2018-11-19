@@ -139,7 +139,11 @@ def swapity_swap(grafo):
             i += 1
     return dict_swaps
 
-print(swapity_swap(super)["Cereales"])
+
+if __name__ == '__main__':
+    print(swapity_swap(super)["Cereales"])
+
+
 
 
 

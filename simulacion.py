@@ -69,7 +69,7 @@ class Simulacion:
                     #print('row',row)
                     lista = row[0].split(";")
                     if numero_de_boleta == lista[1]: # cuando es la que queremos
-                        for indice in range(2, len(lista)):
+                        for indice in range(2, len(lista)-1):
                             if "1" == lista[indice]:
                                 producto_en_lista.append(self.productos[int(indice)-2])  ## el primer producto va a ser el 0 
                 self.clientes.append(Cliente(producto_en_lista))
@@ -131,17 +131,16 @@ class Simulacion:
             distancia += cliente.distancia_recorrida
         self.estadisticas["distancia_media_recorrida"]=distancia/len(self.clientes)
 
-        
-        for k in self.estadisticas:
-            print(k, self.estadisticas[k])
+
         
     def run(self, num_clientes, tope_boleta):
         self.estadisticas = {}
         self.clientes=[]
-        self.cargar_clientes("Boletas_completas.csv",num_clientes, tope_boleta)
+        self.cargar_clientes("Boletas20.csv",num_clientes, tope_boleta)
         self.calcular_rutas_productos_clientes()
         self.comprar_clientes()
         self.actualizar_stats()
+        return self.estadisticas
 
                 
 

@@ -5,7 +5,6 @@ class GraphNode:
     def __init__(self, id, x, y, gondolas, posiciones_accesibles = None):
         self.conexiones = set()
         self.posiciones_accesibles = posiciones_accesibles
-        print("init {}".format(self.posiciones_accesibles))
         self.gondolas = gondolas
         self.id = id
         self.x = x
@@ -24,11 +23,7 @@ class GraphNode:
     def productos_accesibles(self):
         productos = set()
         for gondola in self.gondolas:
-            print("self.gond {}".format(self.gondolas))
-            print("pos acc {}".format(self.posiciones_accesibles))
-            print(productos)
             for posicion in self.posiciones_accesibles:
-                print(gondola.espacios)
                 productos.add(gondola.espacios[int(posicion)-1])
         return productos
 
@@ -46,7 +41,6 @@ class Graph:
 
     def cargar_gondolas(self,archivo):
         if archivo == "distr_gondolas.csv":
-            print('cargar')
             with open(archivo) as file:
                 datos = csv.reader(file)
                 informacion = [dato for dato in datos]
