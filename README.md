@@ -62,3 +62,6 @@ La dinamica de la simulacion va a ser:
 Poblar el supermercado con todos los productos  
 para cada cliente actualizar los stats en cada nodo
 
+## Revisar README.TXT para las instrucciones de uso y para una descripción de los principales archivos utilizados
+
+
