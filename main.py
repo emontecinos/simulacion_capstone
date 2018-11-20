@@ -16,9 +16,9 @@ if __name__ == "__main__":
     grafo.cargar_base("datos_nodos_new.csv")
     grafo.cargar_gondolas("distr_gondolas.csv")
     ######################## PARAMETROS DE LA SIMULACION ###########################
-    clientes_iniciales = 150
+    clientes_iniciales = 30
     limite_boletas = 200
-    iteraciones_por_config = 4
+    iteraciones_por_config = 2
     veces_que_busca_mejora = 20
     #################################################################################
     simulacion = Simulacion(grafo)
@@ -33,14 +33,14 @@ if __name__ == "__main__":
 
 ########################################################################################################################
     # print("ESTADISTICAS INICIALES")
-    for i in range(20):
+    for i in range(1):
         estadisticas_iniciales = simulacion.run(clientes_iniciales, limite_boletas)
         for estadistica in estadisticas_iniciales.items():
             if type(estadistica[1]) is not list:
                 if estadistica[0] == "probabilidad_total":
-                    estadisticas_prom[estadistica[0]] += estadistica[1] / (20 * clientes_iniciales)
+                    estadisticas_prom[estadistica[0]] += estadistica[1] / (50 * clientes_iniciales)
                 else:
-                    estadisticas_prom[estadistica[0]] += estadistica[1] / 20
+                    estadisticas_prom[estadistica[0]] += estadistica[1] / 50
     with open("Swaps_hechos.csv", 'w') as file:
         for x in estadisticas_prom.items():
             file.write("{}:, {} \n".format(x[0], x[1]))
